@@ -1,0 +1,204 @@
+//
+//  OrderProgressVC.m
+//  ArtEast
+//
+//  Created by yibao on 16/11/8.
+//  Copyright © 2016年 北京艺宝网络文化有限公司. All rights reserved.
+//
+
+#import "OrderProgressVC.h"
+
+@interface OrderProgressVC ()<UITableViewDataSource, UITableViewDelegate>
+{
+    UILabel *wuliuNumLab;
+    UILabel *wuliuTypeLab;
+    NSMutableArray *arr;
+}
+@end
+
+@implementation OrderProgressVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"物流信息";
+    
+    arr = [NSMutableArray array];
+    
+    [self initView];
+    [self getData];
+}
+
+//获取物流进度
+- (void)getData {
+    
+    [JHHJView showLoadingOnTheKeyWindowWithType:JHHJViewTypeSingleLine]; //开始加载
+    
+    //@"160121192917472"
+    NSDictionary *ddic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         self.order.ID, @"order_id",
+                         self.order.status, @"order_status",
+                         nil];
+    [[NetworkManager sharedManager] postJSON:URL_GetWuliuInfo parameters:ddic imagePath:nil completion:^(id responseData, RequestState status, NSError *error) {
+        
+        [JHHJView hideLoading]; //结束加载
+        
+        if (status == Request_Success) {
+            //[Utils showToast:@"获取物流信息成功"];
+            
+            if (![Utils isBlankString:responseData]) {
+                wuliuTypeLab.text = responseData[@"bh"];
+                arr = responseData[@"kd"];
+                arr = (NSMutableArray *)[[arr reverseObjectEnumerator] allObjects];
+                [self.tableView reloadData];
+            } else {
+                wuliuTypeLab.text = @"无";
+                wuliuNumLab.text = @"无";
+                [Utils showToast:@"暂无物流信息"];
+            }
+        }
+    }];
+}
+
+- (void)initView {
+    
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 72, WIDTH, 50)];
+    topView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:topView];
+    
+    UILabel *wlTypeLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 72, 20)];
+    wlTypeLab.text = @"物流编号：";
+    wlTypeLab.textAlignment = NSTextAlignmentLeft;
+    wlTypeLab.textColor = LightBlackColor;
+    wlTypeLab.font = [UIFont systemFontOfSize:14];
+    [topView addSubview:wlTypeLab];
+    
+    wuliuTypeLab = [[UILabel alloc] initWithFrame:CGRectMake(wlTypeLab.maxX, 15, WIDTH-100, 20)];
+    wuliuTypeLab.textAlignment = NSTextAlignmentLeft;
+    wuliuTypeLab.textColor = LightBlackColor;
+    wuliuTypeLab.font = [UIFont systemFontOfSize:14];
+    [topView addSubview:wuliuTypeLab];
+    
+    UIView *gzView = [[UIView alloc] initWithFrame:CGRectMake(0, topView.maxY+8, WIDTH, 50)];
+    gzView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:gzView];
+    
+    UILabel *genzhongLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 72, 20)];
+    genzhongLab.text = @"物流跟踪：";
+    genzhongLab.textAlignment = NSTextAlignmentLeft;
+    genzhongLab.textColor = LightBlackColor;
+    genzhongLab.font = [UIFont systemFontOfSize:14];
+    [gzView addSubview:genzhongLab];
+    
+    wuliuNumLab = [[UILabel alloc] initWithFrame:CGRectMake(genzhongLab.maxX, 15, WIDTH-100, 20)];
+    wuliuNumLab.textAlignment = NSTextAlignmentLeft;
+    wuliuNumLab.textColor = LightBlackColor;
+    wuliuNumLab.font = [UIFont systemFontOfSize:14];
+    [gzView addSubview:wuliuNumLab];
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, gzView.maxY+8, WIDTH, HEIGHT-188) style:UITableViewStyleGrouped];
+    self.tableView.backgroundColor = PageColor;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return arr.count-1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellID = @"cell";
+    OrderProgressCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[OrderProgressCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    
+    CGFloat height = [Utils getTextHeight:arr[indexPath.row+1][@"log_text"] font:[UIFont systemFontOfSize:14] forWidth:WIDTH-50];
+    cell.contextLabel.frame = CGRectMake(40, 5, WIDTH-50, height);
+    cell.contextLabel.text = arr[indexPath.row+1][@"log_text"];
+    cell.dian.frame = CGRectMake(16, (height-4)/2, 8, 8);
+    
+    cell.ftimeLabel.frame = CGRectMake(40, height+40-20, WIDTH-50, 13);
+    cell.ftimeLabel.text = arr[indexPath.row+1][@"alttime"];
+    cell.line.frame = CGRectMake(19.5, 0, 1, height+40);
+    
+    if (indexPath.row == arr.count-2) {
+        cell.line.frame = CGRectMake(19.5, 0, 1, CGRectGetMinY(cell.dian.frame));
+    }
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat height = [Utils getTextHeight:arr[indexPath.row+1][@"log_text"] font:[UIFont systemFontOfSize:15] forWidth:WIDTH-50];
+    return height+40;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    if (arr.count==0) {
+        return nil;
+    }
+    
+    CGFloat height = [Utils getTextHeight:arr[section+1][@"log_text"] font:[UIFont systemFontOfSize:14] forWidth:WIDTH-50];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(40, 0, WIDTH-50, height+40)];
+    
+    UILabel  *contextLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 5, WIDTH-50, height)];
+    contextLabel.font = [UIFont systemFontOfSize:14];
+    contextLabel.textColor = AppThemeColor;
+    contextLabel.numberOfLines = 0;
+    contextLabel.textAlignment =  NSTextAlignmentJustified;
+    [view addSubview:contextLabel];
+    
+    UILabel  *ftimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, height+40-20, WIDTH-50, 13)];
+    ftimeLabel.textColor = PlaceHolderColor;
+    ftimeLabel.font = [UIFont systemFontOfSize:12];
+    [view addSubview:ftimeLabel];
+    
+    UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(15, (height-8)/2+5, 11, 11)];
+    img.layer.masksToBounds = YES;
+    img.layer.cornerRadius = 5.5;
+    img.backgroundColor = [UIColor redColor];
+    [view addSubview:img];
+    
+    UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(19.5, CGRectGetMaxY(img.frame), 1, height+40-CGRectGetMaxY(img.frame))];
+    line.backgroundColor = [UIColor colorWithWhite:0.537 alpha:1.000];
+    [view addSubview:line];
+    
+    contextLabel.frame = CGRectMake(40, 5, WIDTH-50, height);
+    contextLabel.text = arr[0][@"log_text"];
+    
+    ftimeLabel.frame = CGRectMake(40, height+40-20, WIDTH-50, 13);
+    ftimeLabel.text = arr[0][@"alttime"];
+    
+    view.backgroundColor = [UIColor whiteColor];
+    
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (arr.count==0) {
+        return 40;
+    }
+    
+    CGFloat height = [Utils getTextHeight:arr[section+1][@"log_text"] font:[UIFont systemFontOfSize:15] forWidth:WIDTH-50];
+    return height+40;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end

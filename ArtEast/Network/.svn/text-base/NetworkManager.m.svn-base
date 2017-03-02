@@ -1,0 +1,215 @@
+//
+//  NetworkManager.m
+//  ArtEast
+//
+//  Created by yibao on 16/9/28.
+//  Copyright © 2016年 北京艺宝网络文化有限公司. All rights reserved.
+//
+
+#import "NetworkManager.h"
+#import <AFNetworking.h>
+#import "NetworkUtil.h"
+#import "Utils.h"
+#import "NSDictionary+DeleteNULL.h"
+
+#define TIMEOUT 20;
+
+static NetworkManager *_manager = nil;
+
+@implementation NetworkManager
+
++ (instancetype)sharedManager
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _manager = [[NetworkManager alloc] initWithBaseURL:[NSURL URLWithString:ProductUrl]];
+    });
+    return _manager;
+}
+
+// https ssl 验证函数
+
+- (AFSecurityPolicy *)customSecurityPolicy {
+    
+    // AFSSLPinningModeCertificate 使用证书验证模式
+    // allowInvalidCertificates 是否允许无效证书(也就是自建的证书)，默认为NO
+    // validatesDomainName 是否需要验证域名，默认为YES;
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+    securityPolicy.allowInvalidCertificates = YES;
+    securityPolicy.validatesDomainName = NO;
+    
+    return securityPolicy;
+}
+
+- (void)postJSON:(NSString *)name
+      parameters:(NSDictionary *)parameters
+       imagePath:(NSString *)imagePath
+      completion:(RequestCompletion)completion {
+    
+    self.securityPolicy = [self customSecurityPolicy];
+    
+    [self configNetManager];
+    
+    __weak typeof(self) weakSelf = self;
+    [self setSessionDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession *session, NSURLAuthenticationChallenge *challenge, NSURLCredential *__autoreleasing *_credential) {
+        
+        // 获取服务器的trust object
+        SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
+        //导入自签名证书
+        NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"cer"]; //server/cydfDis
+        NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
+        NSSet *cerSet = [NSSet setWithObjects:cerData,nil];
+        weakSelf.securityPolicy.pinnedCertificates = cerSet;
+        
+        SecCertificateRef caRef = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)cerData);
+        NSCAssert(caRef != nil, @"caRef is nil");
+        
+        NSArray *caArray = @[(__bridge id)(caRef)];
+        NSCAssert(caArray != nil, @"caArray is nil");
+        
+        OSStatus status = SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef)caArray);
+        SecTrustSetAnchorCertificatesOnly(serverTrust,NO);
+        NSCAssert(errSecSuccess == status, @"SecTrustSetAnchorCertificates failed");
+        //选择质询认证的处理方式
+        NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+        __autoreleasing NSURLCredential *credential = nil;
+        
+        //NSURLAuthenticationMethodServerTrust质询认证方式
+        if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+            //基于客户端的安全策略来决定是否信任该服务器，不信任则不响应质询 。
+            if ([weakSelf.securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:challenge.protectionSpace.host]) {
+                //创建质询证书
+                credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+                //确认质询方式
+                if (credential) {
+                    disposition = NSURLSessionAuthChallengeUseCredential;
+                } else {
+                    disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+                }
+            } else {
+                //取消质询
+                disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;
+            }
+        } else {
+            disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+        }
+        
+        return disposition;
+    }];
+    
+    NSMutableDictionary *params = [parameters mutableCopy];
+    
+    [params setObject:name forKey:@"method"];
+    [params setObject:[Utils getCurrentTime] forKey:@"date"];
+    [params setObject:@"true" forKey:@"direct"];
+    //获取本地app当前版本号
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *currentVersion = [NSString stringWithFormat:@"%@",infoDic[@"CFBundleShortVersionString"]];
+    [params setObject:currentVersion forKey:@"version"];
+    [params setObject:[self getSign:params] forKey:@"sign"];
+    
+    [self POST:ProductUrl parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        if ([imagePath length] > 0) {
+            NSURL *filePath = [NSURL fileURLWithPath:imagePath];
+            [formData appendPartWithFileURL:filePath name:@"file" error:nil];
+        }
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        id _Nullable object = [NSDictionary changeType:responseObject];
+        DLog(@"参数%@%@\n%@返回结果：%@",ProductUrl,params,name,object);
+        
+        if ([object[@"rsp"] isEqualToString:@"succ"]) { //成功
+            id _Nullable dataObject = object[@"data"];
+            completion(dataObject,Request_Success,nil);
+        } else {
+            completion(nil,Request_Fail,nil);
+            [Utils showToast:object[@"res"]];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completion(nil,Request_TimeoOut,error);
+        DLog(@"参数%@%@\n%@请求失败信息：%@",ProductUrl,params,name,[error localizedDescription]);
+        if (![name isEqualToString:URL_JudgeShowThirdLogin]
+            &&![name isEqualToString:URL_GetGoodsComment]
+            &&![name isEqualToString:URL_GetCartNum]
+            &&![name isEqualToString:URL_CheckGoodsFav]) {
+            [Utils showToast:@"请求超时"];
+        }
+        [JHHJView hideLoading]; //结束加载
+    }];
+}
+
+- (void)getJSON:(NSString *)name
+     parameters:(NSDictionary *)parameters
+     completion:(RequestCompletion)completion {
+    
+    [self configNetManager];
+    
+    NSMutableDictionary *params = [parameters mutableCopy];
+    [params setObject:name forKey:@"method"];
+    [params setObject:[Utils getCurrentTime] forKey:@"date"];
+    [params setObject:@"true" forKey:@"direct"];
+    [params setObject:[self getSign:params] forKey:@"sign"];
+    
+    [self GET:ProductUrl parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        id _Nullable object = [NSDictionary changeType:responseObject];
+        if ([object[@"rsp"] isEqualToString:@"succ"]) { //成功
+            id _Nullable dataObject = object[@"data"];
+            if ([dataObject isKindOfClass:[NSString class]]) {
+                completion(@"",Request_Success,nil);
+            } else {
+                completion(dataObject,Request_Success,nil);
+            }
+        } else {
+            completion(nil,Request_Fail,nil);
+            [Utils showToast:object[@"res"]];
+        }
+        DLog(@"参数%@%@\n%@返回结果：%@",ProductUrl,params,name,object);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completion(nil,Request_TimeoOut,error);
+        DLog(@"参数%@%@\n%@请求失败信息：%@",ProductUrl,params,name,[error localizedDescription]);
+        [Utils showToast:@"请求超时"];
+        [JHHJView hideLoading]; //结束加载
+    }];
+}
+
+//配置请求头
+- (void)configNetManager {
+    //请求
+    self.requestSerializer = [AFJSONRequestSerializer serializer];
+    self.requestSerializer.timeoutInterval = TIMEOUT;
+    //响应
+    AFJSONResponseSerializer *response = [AFJSONResponseSerializer serializer];
+    //response.removesKeysWithNullValues = YES;
+    self.responseSerializer = response;
+    self.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"text/html", nil];
+}
+
+//签名
+- (NSString *)getSign:(NSMutableDictionary *)dict {
+    
+    NSString *signStr = @"";
+    
+    //1、字典根据key按照升序排序，然后KeyValue拼接成字符串
+    NSArray *keys = [dict allKeys];
+    NSArray *sortedArray = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
+        return [obj1 compare:obj2 options:NSNumericSearch];
+    }];
+
+    for (NSString *categoryId in sortedArray) {
+        signStr = [[signStr stringByAppendingString:categoryId] stringByAppendingString:[NSString stringWithFormat:@"%@",[dict objectForKey:categoryId]]];
+    }
+    
+    DLog(@"%@",signStr);
+    
+    //2、Md5加密并转化成大写
+    signStr = [[Utils md5HexDigest:signStr] uppercaseString];
+    
+    //3、拼接screct
+    signStr = [signStr stringByAppendingString:AppSecret];
+    
+    //4、再次Md5加密并转化成大写
+    signStr = [[Utils md5HexDigest:signStr] uppercaseString];
+    
+    return signStr;
+}
+
+@end

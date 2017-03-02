@@ -1,0 +1,43 @@
+//
+//  GoodsModel.m
+//  ArtEast
+//
+//  Created by yibao on 16/10/14.
+//  Copyright © 2016年 北京艺宝网络文化有限公司. All rights reserved.
+//
+
+#import "GoodsModel.h"
+
+@implementation GoodsModel
+
++(NSDictionary *)replacedKeyFromPropertyName
+{
+    return @{
+             @"ID":@"goods_id",
+             @"icon":@"picture",
+             };
+}
+
+- (void)setName:(NSString *)name {
+    if (_name != name) {
+        _name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    }
+}
+
+- (void)setIcon:(NSString *)icon {
+    if (_icon != icon) {
+        if (![icon containsString:@"http"]) {
+            _icon = [NSString stringWithFormat:@"%@%@",PictureUrl,icon];
+        } else {
+            _icon = icon;
+        }
+    }
+}
+
+- (void)setUrl:(NSString *)url {
+    if (_url != url) {
+        _url = [NSString stringWithFormat:@"%@%@",PictureUrl,url];
+    }
+}
+
+@end

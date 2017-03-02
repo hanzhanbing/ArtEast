@@ -1,0 +1,151 @@
+//
+//  CancelOrderVC.m
+//  ArtEast
+//
+//  Created by yibao on 16/11/9.
+//  Copyright © 2016年 北京艺宝网络文化有限公司. All rights reserved.
+//
+
+#import "CancelOrderVC.h"
+#import "AEButton.h"
+#import "AEFlowLayoutView.h"
+
+#define kMaxTextCount  500
+
+@interface CancelOrderVC ()<AEFlowLayoutViewDelegate>
+{
+    AEFlowLayoutView *_reasonFlowView;
+    NSString *_reasonStr;
+    UITextView *_contentTV;
+    UILabel *_tipLab;
+    UILabel *_countLab;
+}
+@end
+
+@implementation CancelOrderVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.title = @"取消订单";
+    
+    _reasonStr = @"";
+    
+    [self initView];
+}
+
+#pragma mark - init view
+
+- (void)initView {
+    UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 84, WIDTH-50, 20)];
+    titleLab.font = [UIFont systemFontOfSize:14];
+    titleLab.textColor = PlaceHolderColor;
+    titleLab.text = @"请选择取消订单原因";
+    [self.view addSubview:titleLab];
+    
+    _reasonFlowView = [[AEFlowLayoutView alloc] initWithFrame:CGRectMake(5, titleLab.maxY, WIDTH-10, 0)]; //高度由内容定
+    _reasonFlowView.array = [NSMutableArray arrayWithObjects:@"支付不成功",@"价格较贵",@"等待时间较长",@"拍错",@"不想要了",@"库存缺货",@"其他", nil];
+    _reasonFlowView.isSelected = YES; //选中效果
+    _reasonFlowView.delegate = self;
+    [self.view addSubview:_reasonFlowView];
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(20, _reasonFlowView.maxY+5, WIDTH-40, 150)];
+    bgView.layer.cornerRadius = 3;
+    bgView.layer.borderWidth = 0.5;
+    bgView.layer.borderColor = [UIColor grayColor].CGColor;
+    bgView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:bgView];
+    
+    _contentTV = [[UITextView alloc] initWithFrame:CGRectMake(25, _reasonFlowView.maxY+15, WIDTH-50, 115)];
+    _contentTV.backgroundColor = [UIColor clearColor];
+    _contentTV.delegate = self;
+    _contentTV.font = [UIFont systemFontOfSize:14];
+    [self.view addSubview:_contentTV];
+    
+    _tipLab = [[UILabel alloc] initWithFrame:CGRectMake(30, _reasonFlowView.maxY+20, WIDTH-60, 20)];
+    _tipLab.text = @"请输入您的取消订单原因";
+    _tipLab.font = [UIFont systemFontOfSize:14];
+    _tipLab.textColor = [UIColor grayColor];
+    [self.view addSubview:_tipLab];
+    
+    _countLab = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH-60, _reasonFlowView.maxY+132, 30, 20)];
+    _countLab.text = [NSString stringWithFormat:@"%d",kMaxTextCount];;
+    _countLab.textAlignment = NSTextAlignmentRight;
+    _countLab.font = [UIFont systemFontOfSize:14];
+    _countLab.textColor = [UIColor grayColor];
+    [self.view addSubview:_countLab];
+    
+    UIButton *submitBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, bgView.maxY+30, WIDTH-30, 45)];
+    submitBtn.cornerRadius = 5;
+    submitBtn.backgroundColor = ButtonBgColor;
+    [submitBtn setTitle:@"确定" forState:UIControlStateNormal];
+    submitBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [submitBtn setTitleColor:ButtonFontColor forState:UIControlStateNormal];
+    [submitBtn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:submitBtn];
+}
+
+#pragma mark - methods
+
+- (void)submit {
+    DLog(@"提交");
+    
+    [self.view endEditing:YES];
+    
+    if (_reasonStr.length>0) {
+        if ([_reasonStr isEqualToString:@"其他"]&&_contentTV.text.length==0) {
+            [Utils showToast:@"请输入您的取消订单原因"];
+        } else {
+            [JHHJView showLoadingOnTheKeyWindowWithType:JHHJViewTypeSingleLine]; //开始加载
+            
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 _reasonStr, @"account",
+                                 [UserInfo share].userID, @"member_id",
+                                 self.orderID, @"order_id",
+                                 nil];
+            
+            [[NetworkManager sharedManager] postJSON:URL_CancelOrder parameters:dic imagePath:nil completion:^(id responseData, RequestState status, NSError *error) {
+                
+                [JHHJView hideLoading]; //结束加载
+                
+                if (status == Request_Success) {
+                    [Utils showToast:@"取消订单成功"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kOrderCancelSuccNotification object:nil];
+                }
+            }];
+        }
+    } else {
+        [Utils showToast:@"请选择取消订单原因"];
+    }
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView.text.length>kMaxTextCount) {
+        textView.text = [textView.text substringToIndex:kMaxTextCount];
+        [_contentTV resignFirstResponder];
+        
+        [Utils showToast:@"您已经超过了最大字数限制"];
+    }
+    
+    if (textView.text.length>0) {
+        _tipLab.hidden = YES;
+    } else {
+        _tipLab.hidden = NO;
+    }
+    
+    _countLab.text = [NSString stringWithFormat:@"%lu",(int)kMaxTextCount - textView.text.length];
+}
+
+#pragma mark - AEFlowLayoutViewDelegate
+- (void)clickFlowLayout:(AEButton *)sender {
+    NSLog(@"%@  %@",sender.idStr,sender.name);
+    _reasonStr = sender.name;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end

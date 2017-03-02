@@ -1,0 +1,39 @@
+//
+//  GoodsModel.h
+//  ArtEast
+//
+//  Created by yibao on 16/10/14.
+//  Copyright © 2016年 北京艺宝网络文化有限公司. All rights reserved.
+//
+
+/**
+ *  商品Model
+ */
+
+#import <Foundation/Foundation.h>
+
+@interface GoodsModel : NSObject
+
+@property (nonatomic,copy) NSString *act_id; //模块id
+@property (nonatomic,copy) NSString *act_name; //模块名称
+@property (nonatomic,copy) NSString *s_url; //图标url
+@property (nonatomic,copy) NSString *ID;    //ID
+@property (nonatomic,copy) NSString *icon;  //图标
+@property (nonatomic,copy) NSString *name;  //名称
+@property (nonatomic,copy) NSString *brief; //简介
+@property (nonatomic,copy) NSString *count; //数量
+@property (nonatomic,copy) NSString *price; //单价
+@property (nonatomic,copy) NSString *mktprice; //市场价
+@property (nonatomic,copy) NSString *url; //详情链接
+@property (nonatomic,copy) NSString *favoroite; //关注
+
+@property (nonatomic,retain) UIImageView *imageView; //图片控件
+@property (nonatomic,assign) CGRect descRec; //目的位置
+@property (nonatomic,assign) CGRect originalRec; //原始位置
+
+//针对分类列表
+@property (nonatomic,strong) NSString *from;
+@property (nonatomic,strong) NSString *index;
+@property (nonatomic,strong) NSIndexPath *indexPath;
+
+@end

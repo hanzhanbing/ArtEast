@@ -1,0 +1,115 @@
+//
+//  ArtEast.pch
+//  ArtEast
+//
+//  Created by yibao on 16/9/19.
+//  Copyright © 2016年 北京艺宝网络文化有限公司. All rights reserved.
+//
+
+#ifndef ArtEast_pch
+#define ArtEast_pch
+
+/****************************头文件*****************************/
+
+#import "ServerUrl.h"
+#import "BaseVC.h"
+#import "AEAlertView.h"
+#import "ZBAlertView.h"
+#import "Utils.h"
+#import "AEIndicator.h"
+#import "JHHJView.h"
+#import "UserInfo.h"
+#import "NetworkManager.h"
+#import "UIView+Extension.h"
+#import <UIImageView+WebCache.h>
+#import "MJExtension.h"
+#import "DefaultView.h"
+
+
+#define ContactPhone @"010-65663699-668"
+#define CompanyEmail @"service@cydf.com"
+
+#define kCachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
+
+/******************************字体****************************/
+#define kFont10Size [UIFont fontWithName:@"Heiti SC" size:10]
+#define kFont11Size [UIFont fontWithName:@"Heiti SC" size:11]
+#define kFont12Size [UIFont fontWithName:@"Heiti SC" size:12]
+#define kFont13Size [UIFont fontWithName:@"Heiti SC" size:13]
+#define kFont14Size [UIFont fontWithName:@"Heiti SC" size:14]
+#define kFont15Size [UIFont fontWithName:@"Heiti SC" size:15]
+#define kFont16Size [UIFont fontWithName:@"Heiti SC" size:16]
+#define kFont17Size [UIFont fontWithName:@"Heiti SC" size:17]
+#define kFont18Size [UIFont fontWithName:@"Heiti SC" size:18]
+#define kFont20Size [UIFont fontWithName:@"Heiti SC" size:20]
+
+//#define kFont10Size [UIFont systemFontOfSize:10]
+//#define kFont11Size [UIFont systemFontOfSize:11]
+//#define kFont115Size [UIFont systemFontOfSize:11.5]
+//#define kFont12Size [UIFont systemFontOfSize:12]
+//#define kFont13Size [UIFont systemFontOfSize:13]
+//#define kFont14Size [UIFont systemFontOfSize:14]
+//#define kFont15Size [UIFont systemFontOfSize:15]
+//#define kFont16Size [UIFont systemFontOfSize:16]
+//#define kFont17Size [UIFont systemFontOfSize:17]
+//#define kFont18Size [UIFont systemFontOfSize:18]
+//#define kFont20Size [UIFont systemFontOfSize:20]
+
+/******************************通知****************************/
+#define kLoginSuccNotification  @"kLoginSuccNotification"
+#define kLoginFailNotification  @"kLoginFailNotification"
+#define kLogoutSuccNotification  @"kLogoutSuccNotification"
+#define kOrderCancelSuccNotification  @"kOrderCancelSuccNotification"
+#define kOrderPaySuccNotification  @"kOrderPaySuccNotification"
+#define kWebViewRefreshNotification  @"kWebViewRefreshNotification"
+#define kChangeAddresssSuccNotification  @"kChangeAddresssSuccNotification"
+#define kSelectAddresssSuccNotification  @"kSelectAddresssSuccNotification"
+#define kSelectCouponSuccNotification  @"kSelectCouponSuccNotification"
+#define kCollectNotification  @"kCollectNotification"
+
+/******************************版本****************************/
+#define iOS8 ([UIDevice currentDevice].systemVersion.floatValue >= 8.0f)
+#define iOS9 ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f)
+
+/*****************************屏幕宽高**************************/
+
+#define SCREEN_BOUNDS [[UIScreen mainScreen] bounds]
+#define WIDTH  [[UIScreen mainScreen] bounds].size.width
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
+
+/*****************************颜色*****************************/
+
+#define AEColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+#define kColorFromARGBHex(value,a) [UIColor colorWithRed:((float)((value & 0xFF0000) >> 16))/255.0 green:((float)((value & 0xFF00) >> 8))/255.0 blue:((float)(value & 0xFF))/255.0 alpha:a] //a:透明度
+#define kColorFromRGBHex(value) [UIColor colorWithRed:((float)((value & 0xFF0000) >> 16))/255.0 green:((float)((value & 0xFF00) >> 8))/255.0 blue:((float)(value & 0xFF))/255.0 alpha:1.0]
+
+//#define AppThemeColor kColorFromRGBHex(0xff8200)
+#define AppThemeColor kColorFromRGBHex(0xf44e12)
+//#define AppThemeColor AEColor(220, 169, 54, 1)
+#define PageColor kColorFromRGBHex(0xF6F6F6)
+#define LightYellowColor kColorFromRGBHex(0xFFCC00)
+#define BlackColor [UIColor blackColor]
+#define LineColor kColorFromRGBHex(0xb2b2b2)
+#define AELineColor [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.1]
+#define PlaceHolderColor kColorFromRGBHex(0x868686)
+#define ButtonFontColor [UIColor blackColor]
+#define ButtonBgColor kColorFromRGBHex(0xFFCC00)
+#define ButtonFontSize [UIFont systemFontOfSize:16]
+#define PriceColor [UIColor blackColor]
+#define PriceRedColor kColorFromRGBHex(0xf44e12)
+//#define PriceRedColor AEColor(220, 169, 54, 1)
+#define OptionBarLineColor kColorFromRGBHex(0xFFCC00)
+//字体颜色
+#define LightBlackColor [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8]
+
+/*****************************输出日志**************************/
+
+#ifdef DEBUG
+#define DLog(format, ...) printf("class: <%p %s:(%d) > method: %s \n%s\n", self, [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __PRETTY_FUNCTION__, [[NSString stringWithFormat:(format), ##__VA_ARGS__] UTF8String] )
+#else
+#define DLog(format, ...)
+#endif
+
+/*************************************************************/
+
+#endif /* ArtEast_pch */

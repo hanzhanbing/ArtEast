@@ -1,0 +1,326 @@
+//
+//  GoodsListViewController.m
+//  ArtEast
+//
+//  Created by yibao on 16/11/22.
+//  Copyright © 2016年 北京艺宝网络文化有限公司. All rights reserved.
+//
+
+#import "GoodsListViewController.h"
+#import <MJRefresh.h>
+#import "BaseWebVC.h"
+#import "GoodsDetailVC.h"
+#import "BaseNC.h"
+
+@implementation GoodsListTableCell
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self =[super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self initWithCellView];
+    }
+    return self;
+}
+
+- (void)initWithCellView{
+    
+    _whiteBg = [[UIView alloc] initWithFrame:CGRectMake(15, 0, WIDTH-30, WIDTH+155)];
+    _whiteBg.backgroundColor = [UIColor whiteColor];
+    _whiteBg.layer.cornerRadius = 4;
+    [self.contentView addSubview:_whiteBg];
+    
+    //图片
+    _imageV = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, WIDTH-60, WIDTH-40)];
+    _imageV.backgroundColor = [UIColor clearColor];
+    _imageV.contentMode = UIViewContentModeScaleAspectFill;
+    _imageV.clipsToBounds = YES;
+    [_whiteBg addSubview:_imageV];
+    
+    //名称
+    _nameLab = [[UILabel alloc] initWithFrame:CGRectMake(15,_imageV.maxY+20, WIDTH-60, 20)];
+    _nameLab.numberOfLines = 0;
+    _nameLab.textColor = [UIColor blackColor];
+    _nameLab.font = kFont16Size;
+    _nameLab.textAlignment = NSTextAlignmentCenter;
+    [_whiteBg addSubview:_nameLab];
+    
+    //价格
+    _priceLab = [[UILabel alloc] initWithFrame:CGRectMake(15, _nameLab.maxY+25, WIDTH-60, 20)];
+    _priceLab.textColor = [UIColor blackColor];
+    _priceLab.font = kFont20Size;
+    _priceLab.textAlignment = NSTextAlignmentCenter;
+    [_whiteBg addSubview:_priceLab];
+    
+    _lineView = [[UIView alloc] initWithFrame:CGRectMake(WIDTH/2-65, _priceLab.maxY+25, 100, 1)];
+    _lineView.backgroundColor = [UIColor blackColor];
+    [_whiteBg addSubview:_lineView];
+    
+    //简介
+    _briefLab = [[UILabel alloc] initWithFrame:CGRectMake(15, _lineView.maxY+10, WIDTH-60, 20)];
+    _briefLab.numberOfLines = 2;
+    _briefLab.textColor = PlaceHolderColor;
+    _briefLab.font = kFont14Size;
+    _briefLab.textAlignment = NSTextAlignmentCenter;
+    [_whiteBg addSubview:_briefLab];
+    
+    //去看看
+    _jumpBtn = [[UIButton alloc] initWithFrame:CGRectMake(WIDTH/2-75, _briefLab.maxY+20, 120, 40)];
+    _jumpBtn.userInteractionEnabled = NO;
+    _jumpBtn.backgroundColor = [UIColor blackColor];
+    [_jumpBtn setTitle:@"去看看" forState:UIControlStateNormal];
+    [_jumpBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _jumpBtn.layer.cornerRadius = 3;
+    [_whiteBg addSubview:_jumpBtn];
+}
+
+- (void)setGoodsModel:(GoodsModel *)goodsModel {
+    [_imageV sd_setImageWithURL:[NSURL URLWithString:goodsModel.icon] placeholderImage:[UIImage imageNamed:@"GoodsDefaultBig"]];
+    _nameLab.text = goodsModel.name;
+    NSString *priceStr = [NSString stringWithFormat:@"￥%@",goodsModel.price];
+    _priceLab.text = priceStr;
+    _briefLab.text = goodsModel.brief;
+    
+    //重定义位置
+    CGFloat nameH = [Utils getTextHeight:goodsModel.name font:kFont16Size forWidth:WIDTH-60];
+    _nameLab.height = nameH;
+    _priceLab.y = _nameLab.maxY+25;
+    if ([Utils isBlankString:goodsModel.brief]) {
+        _lineView.hidden = YES;
+        _jumpBtn.y = _priceLab.maxY+30;
+    } else {
+        _lineView.hidden = NO;
+        _lineView.y = _priceLab.maxY+25;
+        _briefLab.y = _lineView.maxY+10;
+        _jumpBtn.y = _briefLab.maxY+20;
+    }
+    _whiteBg.height = _jumpBtn.maxY+20;
+}
+
++ (CGFloat)getHeight:(GoodsModel *)goodsModel {
+    CGFloat height = 15+WIDTH-40+20;
+    CGFloat nameH = [Utils getTextHeight:goodsModel.name font:kFont16Size forWidth:WIDTH-60];
+    height += nameH;
+    if (![Utils isBlankString:goodsModel.brief]) {
+        height += 46;
+    }
+    height += 150;
+    return height;
+}
+
+- (UIViewController *)viewController{
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
+#pragma mark - 跳转到商品详情
+
+
+@end
+
+@interface GoodsListViewController ()<UITableViewDelegate,UITableViewDataSource,RefreshDelegate>
+{
+    NSMutableArray *_dataSource;
+    NSMutableArray *_dataArr;
+    NSInteger _currentPage;
+    DefaultView *_defaultView;
+}
+@end
+
+@implementation GoodsListViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.title = self.virtual_cat_name;
+    _currentPage = 1;
+    _dataArr = [NSMutableArray array];
+    
+    [self initView];
+    [self blankView];
+    [self getData:_currentPage];
+}
+
+//无网
+- (void)blankView {
+    _defaultView = [[DefaultView alloc] initWithFrame:self.tableFrame];
+    _defaultView.delegate = self;
+    _defaultView.hidden = YES;
+    [self.view addSubview:_defaultView];
+}
+
+#pragma mark - RefreshDelegate
+
+- (void)refresh {
+    _defaultView.hidden = YES;
+    self.tableView.hidden = NO;
+    [self getData:1];
+}
+
+- (void)getData:(NSInteger)currPage {
+    
+    if (currPage == 1) {
+        [_dataArr removeAllObjects];
+    }
+    
+    [JHHJView showLoadingOnTheKeyWindowWithType:JHHJViewTypeSingleLine]; //开始加载
+    
+    NSDictionary *dic = nil;
+    if (self.search_content.length>0) {
+        dic = [NSDictionary dictionaryWithObjectsAndKeys:
+               [NSString stringWithFormat:@"%ld",(long)_currentPage], @"page",
+               self.search_content, @"skey",
+               nil];
+    } else {
+        dic = [NSDictionary dictionaryWithObjectsAndKeys:
+               [NSString stringWithFormat:@"%ld",(long)_currentPage], @"page",
+               self.virtual_cat_id, @"virtual_cat_id",
+               nil];
+    }
+    [[NetworkManager sharedManager] postJSON:URL_GetGoodsList parameters:dic imagePath:nil completion:^(id responseData, RequestState status, NSError *error) {
+        [JHHJView hideLoading]; //结束加载
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        
+        if (status == Request_Success) {
+            //[Utils showToast:@"商品列表获取成功"];
+            
+            if (![Utils isBlankString:responseData]) {
+                NSDictionary *pagerDic = responseData[@"pager"];
+                NSArray *array = (NSArray *)responseData[@"goodsData"];
+                [_dataArr addObjectsFromArray:array];
+                
+                if (_dataArr.count==0) {
+                    self.tableView.hidden = YES;
+                    _defaultView.hidden = NO;
+                    _defaultView.delegate = nil;
+                    _defaultView.imgView.image = [UIImage imageNamed:@"NoSearchResult"];
+                    _defaultView.lab.text = @"您寻找的商品还未上架";
+                } else {
+                    if ([pagerDic[@"pagetotal"] integerValue]==_currentPage || array.count==0) {
+                        self.tableView.mj_footer = nil;
+                    } else {
+                        [self tableViewGifFooterWithRefreshingBlock:^{
+                            [self loadMoreData];
+                        }];
+                    }
+                    _dataSource = [GoodsModel mj_objectArrayWithKeyValuesArray:_dataArr];
+                    [self.tableView reloadData];
+                }
+            } else {
+                self.tableView.hidden = YES;
+                _defaultView.hidden = NO;
+                _defaultView.delegate = nil;
+                _defaultView.imgView.image = [UIImage imageNamed:@"NoSearchResult"];
+                _defaultView.lab.text = @"您寻找的商品还未上架";
+            }
+        } else {
+            if (![Utils getNetStatus]) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.tableView.hidden = YES;
+                    _defaultView.hidden = NO;
+                    _defaultView.delegate = self;
+                    _defaultView.imgView.image = [UIImage imageNamed:@"NoNetwork"];
+                    _defaultView.lab.text = @"网络状态待提升，点击重试";
+                });
+            }
+        }
+    }];
+}
+
+//加载更多数据
+- (void)loadMoreData {
+    _currentPage++;
+    [self getData:_currentPage];
+}
+
+- (void)initView{
+    self.tableView = [[UITableView alloc]initWithFrame:self.tableFrame style:UITableViewStyleGrouped];;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.backgroundColor = PageColor;
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    [self.view addSubview:self.tableView];
+    
+    //动画下拉刷新
+    [self tableViewGifHeaderWithRefreshingBlock:^{
+        [self getData:1];
+    }];
+    
+    //动画加载更多
+    [self tableViewGifFooterWithRefreshingBlock:^{
+        [self loadMoreData];
+    }];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return _dataSource.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    GoodsListTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GoodsListTableCellID"];
+    if (!cell) {
+        cell = [[GoodsListTableCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GoodsListTableCellID"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
+    }
+    GoodsModel *goodsModel = _dataSource[indexPath.section];
+    cell.goodsModel = goodsModel;
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    GoodsModel *goodsModel = _dataSource[indexPath.section];
+    return [GoodsListTableCell getHeight:goodsModel];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section==0) {
+        return 15;
+    } else {
+        return 0.01;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    GoodsModel *goodsModel = _dataSource[indexPath.section];
+    //[BaseWebVC showWithContro:self withUrlStr:goodsModel.url withTitle:@"商品详情"];
+    
+    CGRect descRec = CGRectMake(0, 0, WIDTH, WIDTH); //目的位置
+    
+    CGRect originalRec;
+    UIImageView *imageView = nil;
+    GoodsListTableCell *firstCell = (GoodsListTableCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
+    originalRec = [firstCell.imageV convertRect:firstCell.imageV.frame toView:self.view];
+    originalRec = CGRectMake(originalRec.origin.x-15, originalRec.origin.y-10, originalRec.size.width, originalRec.size.height);
+    imageView = firstCell.imageV;
+    
+    goodsModel.imageView = imageView;
+    goodsModel.descRec = descRec;
+    goodsModel.originalRec = originalRec;
+    
+    GoodsDetailVC *goodsDetailVC = [[GoodsDetailVC alloc] init];
+    goodsDetailVC.goodsModel = goodsModel;
+    BaseNC *baseNC = (BaseNC *)self.navigationController;
+    [baseNC pushViewController:goodsDetailVC imageView:goodsModel.imageView desRec:goodsModel.descRec original:goodsModel.originalRec deleagte:goodsDetailVC isAnimation:YES];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end
