@@ -72,19 +72,40 @@
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProjectCell" forIndexPath:indexPath];
     
+    //防止cell复用带来的控件重叠
+    for (UIView *view in cell.contentView.subviews) {
+        [view removeFromSuperview];
+    }
+    
     AEImages *images = self.dataSource[indexPath.row];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH-80, WIDTH/2)];
-    imageView.backgroundColor = PageColor;
-    [imageView sd_setImageWithURL:[NSURL URLWithString:images.ad_img]];
-    [cell addSubview:imageView];
+    if (indexPath.row==0) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, WIDTH-80, WIDTH/2)];
+        imageView.backgroundColor = PageColor;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:images.ad_img]];
+        [cell.contentView addSubview:imageView];
+    } else if (indexPath.row==self.dataSource.count-1) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH-80, WIDTH/2)];
+        imageView.backgroundColor = PageColor;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:images.ad_img]];
+        [cell.contentView addSubview:imageView];
+    } else {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, WIDTH-80, WIDTH/2)];
+        imageView.backgroundColor = PageColor;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:images.ad_img]];
+        [cell.contentView addSubview:imageView];
+    }
     
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(WIDTH-80, WIDTH/2);
+    if (indexPath.row==0||indexPath.row==self.dataSource.count-1) {
+        return CGSizeMake(WIDTH-70, WIDTH/2);
+    } else {
+        return CGSizeMake(WIDTH-80, WIDTH/2);
+    }
 }
 
 //点击cell事件

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201799691E695678004341D3 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 201799681E695678004341D3 /* libc++abi.tbd */; };
+		2017996C1E69574A004341D3 /* NSTimer+eocBlockSupports.m in Sources */ = {isa = PBXBuildFile; fileRef = 2017996B1E69574A004341D3 /* NSTimer+eocBlockSupports.m */; };
 		20182F0E1DFD001500E83215 /* AEAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 20182F0D1DFD001500E83215 /* AEAnimator.m */; };
 		20794A841E6069C600414FE6 /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20794A831E6069C600414FE6 /* HyphenateLite.framework */; };
 		20827C811E0E76DC0046F276 /* ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20827C801E0E76DC0046F276 /* ProvinceModel.m */; };
@@ -343,6 +345,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		201799681E695678004341D3 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
+		2017996A1E69574A004341D3 /* NSTimer+eocBlockSupports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+eocBlockSupports.h"; sourceTree = "<group>"; };
+		2017996B1E69574A004341D3 /* NSTimer+eocBlockSupports.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+eocBlockSupports.m"; sourceTree = "<group>"; };
 		20182F0C1DFD001500E83215 /* AEAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAnimator.h; sourceTree = "<group>"; };
 		20182F0D1DFD001500E83215 /* AEAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAnimator.m; sourceTree = "<group>"; };
 		20794A831E6069C600414FE6 /* HyphenateLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyphenateLite.framework; sourceTree = "<group>"; };
@@ -981,6 +986,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				201799691E695678004341D3 /* libc++abi.tbd in Frameworks */,
 				FDEA71A61DE5937300E84CA0 /* libz.tbd in Frameworks */,
 				FDEA71A51DE5937300E84CA0 /* ImageIO.framework in Frameworks */,
 				FD6938FC1E2DCC7D001993B9 /* MobileCoreServices.framework in Frameworks */,
@@ -1031,6 +1037,7 @@
 		BA5E8105ED7BC279D857C434 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				201799681E695678004341D3 /* libc++abi.tbd */,
 				FDD39C3D1E2DFE5A004D0E4E /* AudioToolbox.framework */,
 				FDD39C3B1E2DFE52004D0E4E /* CoreMedia.framework */,
 				FD6939011E2DCCAF001993B9 /* MapKit.framework */,
@@ -1887,6 +1894,8 @@
 				FD7D884B1E37273A004B353C /* UITabBar+RedPoint.m */,
 				FD7D884D1E372B53004B353C /* UITabBar+BadgeValue.h */,
 				FD7D884E1E372B53004B353C /* UITabBar+BadgeValue.m */,
+				2017996A1E69574A004341D3 /* NSTimer+eocBlockSupports.h */,
+				2017996B1E69574A004341D3 /* NSTimer+eocBlockSupports.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2766,6 +2775,7 @@
 				FD848F1A1E1CA43800792FD6 /* AEIndicator.m in Sources */,
 				FD0DB1621E2E273100561643 /* EaseChatToolbar.m in Sources */,
 				FD35FBCB1E31B1B800B18C3F /* SBJsonWriter.m in Sources */,
+				2017996C1E69574A004341D3 /* NSTimer+eocBlockSupports.m in Sources */,
 				FDEA71611DE5937300E84CA0 /* RegisterForgetPswVC.m in Sources */,
 				FD889F961E5EF1DD003EF088 /* WelfareCenterVC.m in Sources */,
 				FDEA71621DE5937300E84CA0 /* ShoppingCartVC.m in Sources */,

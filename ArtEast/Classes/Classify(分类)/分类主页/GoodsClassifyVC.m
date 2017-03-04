@@ -63,6 +63,7 @@ UICollectionViewDataSource,UISearchBarDelegate>
     _selectIndex = 0;
     _isScrollDown = YES;
     
+    self.view.alpha = 0;
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.collectionView];
     
@@ -84,6 +85,9 @@ UICollectionViewDataSource,UISearchBarDelegate>
             if (![Utils isBlankString:responseData]) {
                 self.dataSource = [AETypeInfo mj_objectArrayWithKeyValuesArray:(NSArray *)responseData];
             
+                [UIView animateWithDuration:0.5 animations:^{
+                    self.view.alpha = 1;
+                }];
                 [self.tableView reloadData];
                 [self.collectionView reloadData];
                 [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
@@ -213,6 +217,7 @@ UICollectionViewDataSource,UISearchBarDelegate>
         return cell;
     }
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier_CollectionView forIndexPath:indexPath];
+    //cell.backgroundColor = [UIColor redColor];
     AETypeInfo *typeInfo = self.dataSource[indexPath.section];
     AESubTypeInfo *info = typeInfo.childs[indexPath.row-1];
     cell.model = info;
@@ -241,7 +246,7 @@ UICollectionViewDataSource,UISearchBarDelegate>
         return CGSizeMake(WIDTH, (WIDTH-110)/3+30+40);
     }
     return CGSizeMake((WIDTH - 80 - 4 - 4) / 3,
-                      (WIDTH - 80 - 4 - 4) / 3 + 30);
+                      (WIDTH - 80 - 4 - 4) / 3 + 45);
 }
 
 //- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView

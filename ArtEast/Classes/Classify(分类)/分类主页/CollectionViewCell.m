@@ -28,7 +28,7 @@
 //        [self.imageV.layer setMasksToBounds:YES];
         [self.contentView addSubview:self.imageV];
 
-        self.name = [[UILabel alloc] initWithFrame:CGRectMake(2, 95, self.frame.size.width - 4, 20)];
+        self.name = [[UILabel alloc] initWithFrame:CGRectMake(2, 85, self.frame.size.width - 4, 20)];
         self.name.font = [UIFont systemFontOfSize:13];
         self.name.textColor = LightBlackColor;
         self.name.textAlignment = NSTextAlignmentCenter;

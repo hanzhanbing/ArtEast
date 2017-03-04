@@ -23,7 +23,7 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         
-        _imageBtn = [[UIButton alloc] initWithFrame:CGRectMake(12, 10, WIDTH-24, 80)];
+        _imageBtn = [[UIButton alloc] initWithFrame:CGRectMake(12, 12, WIDTH-24, 80)];
         [_imageBtn addTarget:self action:@selector(jumpAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_imageBtn];
     }

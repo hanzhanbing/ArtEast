@@ -76,12 +76,21 @@
     
     GoodsModel *model = self.dataSource[indexPath.row];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH/2.8, WIDTH/2.8)];
+    UIView *goodsView;
+    if (indexPath.row==self.dataSource.count-1){
+        goodsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH/2.7+10, WIDTH/2.7 + 60)];
+        [cell.contentView addSubview:goodsView];
+    } else {
+        goodsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH/2.7, WIDTH/2.7 + 60)];
+        [cell.contentView addSubview:goodsView];
+    }
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH/2.7, WIDTH/2.7)];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = YES;
     imageView.backgroundColor = PageColor;
     [imageView sd_setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:[UIImage imageNamed:@"GoodsDefault"]];
-    [cell.contentView addSubview:imageView];
+    [goodsView addSubview:imageView];
 
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.maxY+15, imageView.width, 20)];
     titleLabel.text = model.name;
@@ -89,21 +98,25 @@
     titleLabel.textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6];
     titleLabel.font = [UIFont systemFontOfSize:14];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    [cell.contentView addSubview:titleLabel];
+    [goodsView addSubview:titleLabel];
     
     UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, titleLabel.maxY+5, imageView.width, 20)];
     priceLabel.text = [NSString stringWithFormat:@"￥%.2f",[model.price floatValue]];
     priceLabel.textColor = PriceColor;
     priceLabel.font = [UIFont systemFontOfSize:14];
     priceLabel.textAlignment = NSTextAlignmentCenter;
-    [cell.contentView addSubview:priceLabel];
+    [goodsView addSubview:priceLabel];
     
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(WIDTH/2.8, WIDTH/2.8 + 60);
+    if (indexPath.row==self.dataSource.count-1) {
+        return CGSizeMake(WIDTH/2.7+10, WIDTH/2.7 + 60);
+    } else {
+        return CGSizeMake(WIDTH/2.7, WIDTH/2.7 + 60);
+    }
 }
 
 //点击cell事件

@@ -17,6 +17,7 @@
 #import "AEImages.h"
 #import <MJRefresh.h>
 #import "BaseWebVC.h"
+#import "NSTimer+eocBlockSupports.h"
 
 @interface ClassifyHomeVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -60,7 +61,7 @@
 - (void)timeDecreasing {
     
     int seconds = [_limitDic[@"daojishi"] intValue];
-    NSLog(@"%d",seconds);
+    //NSLog(@"%d",seconds);
     _limitDic[@"daojishi"] = [NSString stringWithFormat:@"%d",seconds-1];
     
     // 活动结束
@@ -122,7 +123,6 @@
         
         [JHHJView hideLoading]; //结束加载
         
-        
         if (status == Request_Success) {
             [_limitDic removeAllObjects];
             if([responseData isKindOfClass:[NSDictionary class]]) {
@@ -133,15 +133,10 @@
                 taskID=  [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
                     [weakSelf endBack];
                 }];
-                showTimer =  [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+                
+                showTimer = [NSTimer eocScheduledTimerWithTimeInterval:1 block:^{
                     [weakSelf timeDecreasing];
-                }];
-                //                showTimer = [NSTimer timerWithTimeInterval:1
-                //                                                    target:self
-                //                                                  selector:@selector(timeDecreasing)
-                //                                                  userInfo:nil
-                //                                                   repeats:YES];
-                //                [[NSRunLoop mainRunLoop] addTimer:showTimer forMode:NSDefaultRunLoopMode];
+                } repeats:YES];
             }
         }
     }];
