@@ -10,11 +10,11 @@
 		201799691E695678004341D3 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 201799681E695678004341D3 /* libc++abi.tbd */; };
 		2017996C1E69574A004341D3 /* NSTimer+eocBlockSupports.m in Sources */ = {isa = PBXBuildFile; fileRef = 2017996B1E69574A004341D3 /* NSTimer+eocBlockSupports.m */; };
 		20182F0E1DFD001500E83215 /* AEAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 20182F0D1DFD001500E83215 /* AEAnimator.m */; };
-		20794A841E6069C600414FE6 /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20794A831E6069C600414FE6 /* HyphenateLite.framework */; };
 		20827C811E0E76DC0046F276 /* ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20827C801E0E76DC0046F276 /* ProvinceModel.m */; };
 		20827C841E10AE3D0046F276 /* CouponVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20827C831E10AE3D0046F276 /* CouponVC.m */; };
 		20827C8B1E10D4170046F276 /* CouponItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20827C8A1E10D4170046F276 /* CouponItemVC.m */; };
 		20827C8E1E10E64A0046F276 /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20827C8D1E10E64A0046F276 /* CouponModel.m */; };
+		208F27011F18B6F9005EEBF9 /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 208F27001F18B6F9005EEBF9 /* HyphenateLite.framework */; };
 		2099BFAD1E33726200E7CAA5 /* TrackOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099BFAC1E33726200E7CAA5 /* TrackOrderCell.m */; };
 		FD078B541E08C9CF001B504A /* 启动页@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD078B531E08C9CF001B504A /* 启动页@2x.png */; };
 		FD0B2B1C1E56A9FA001D13CF /* LimitBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0B2B1B1E56A9FA001D13CF /* LimitBuyView.m */; };
@@ -149,8 +149,8 @@
 		FD1DC8681E149952005CB01D /* AEPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1DC8671E149952005CB01D /* AEPageView.m */; };
 		FD1DC86B1E149960005CB01D /* AESegment.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1DC86A1E149960005CB01D /* AESegment.m */; };
 		FD2831DE1E4C38DE00BEC4A0 /* GoodsFavModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2831DD1E4C38DE00BEC4A0 /* GoodsFavModel.m */; };
-		FD2CC1AB1E2F61F900BA7DE1 /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD2CC1AA1E2F61F900BA7DE1 /* HyphenateLite.framework */; };
-		FD2CC1AD1E2F627900BA7DE1 /* HyphenateLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FD2CC1AA1E2F61F900BA7DE1 /* HyphenateLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FD2CC1AB1E2F61F900BA7DE1 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		FD2CC1AD1E2F627900BA7DE1 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FD2E7B3F1DF94D5300618070 /* GoodsDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2E7B3E1DF94D5300618070 /* GoodsDetailModel.m */; };
 		FD35FBC71E31B1B800B18C3F /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FD35FBBE1E31B1B800B18C3F /* NSObject+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FD35FBC81E31B1B800B18C3F /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = FD35FBC01E31B1B800B18C3F /* NSString+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -337,7 +337,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FD2CC1AD1E2F627900BA7DE1 /* HyphenateLite.framework in Embed Frameworks */,
+				FD2CC1AD1E2F627900BA7DE1 /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,7 +350,6 @@
 		2017996B1E69574A004341D3 /* NSTimer+eocBlockSupports.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+eocBlockSupports.m"; sourceTree = "<group>"; };
 		20182F0C1DFD001500E83215 /* AEAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAnimator.h; sourceTree = "<group>"; };
 		20182F0D1DFD001500E83215 /* AEAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAnimator.m; sourceTree = "<group>"; };
-		20794A831E6069C600414FE6 /* HyphenateLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyphenateLite.framework; sourceTree = "<group>"; };
 		20827C7F1E0E76DC0046F276 /* ProvinceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvinceModel.h; sourceTree = "<group>"; };
 		20827C801E0E76DC0046F276 /* ProvinceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvinceModel.m; sourceTree = "<group>"; };
 		20827C821E10AE3D0046F276 /* CouponVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponVC.h; sourceTree = "<group>"; };
@@ -359,6 +358,7 @@
 		20827C8A1E10D4170046F276 /* CouponItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponItemVC.m; sourceTree = "<group>"; };
 		20827C8C1E10E64A0046F276 /* CouponModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
 		20827C8D1E10E64A0046F276 /* CouponModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
+		208F27001F18B6F9005EEBF9 /* HyphenateLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyphenateLite.framework; sourceTree = "<group>"; };
 		2099BFAB1E33726200E7CAA5 /* TrackOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackOrderCell.h; sourceTree = "<group>"; };
 		2099BFAC1E33726200E7CAA5 /* TrackOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackOrderCell.m; sourceTree = "<group>"; };
 		2E18ECDE7D672DA9F32A20E2 /* Pods-ArtEast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtEast.release.xcconfig"; path = "Pods/Target Support Files/Pods-ArtEast/Pods-ArtEast.release.xcconfig"; sourceTree = "<group>"; };
@@ -657,7 +657,6 @@
 		FD2616B51DAE185700872AE0 /* RegisterForgetPswVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterForgetPswVC.m; sourceTree = "<group>"; };
 		FD2831DC1E4C38DE00BEC4A0 /* GoodsFavModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsFavModel.h; sourceTree = "<group>"; };
 		FD2831DD1E4C38DE00BEC4A0 /* GoodsFavModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsFavModel.m; sourceTree = "<group>"; };
-		FD2CC1AA1E2F61F900BA7DE1 /* HyphenateLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HyphenateLite.framework; path = /Users/hzb/Downloads/ArtEast/ArtEast/ThirdParty/HyphenateLite.framework; sourceTree = "<absolute>"; };
 		FD2E7B3D1DF94D5300618070 /* GoodsDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailModel.h; sourceTree = "<group>"; };
 		FD2E7B3E1DF94D5300618070 /* GoodsDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailModel.m; sourceTree = "<group>"; };
 		FD35FBBC1E31B1B800B18C3F /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -993,12 +992,12 @@
 				FDEA71A31DE5937300E84CA0 /* AVFoundation.framework in Frameworks */,
 				FDD39C3E1E2DFE5A004D0E4E /* AudioToolbox.framework in Frameworks */,
 				FDD39C3C1E2DFE52004D0E4E /* CoreMedia.framework in Frameworks */,
-				FD2CC1AB1E2F61F900BA7DE1 /* HyphenateLite.framework in Frameworks */,
-				20794A841E6069C600414FE6 /* HyphenateLite.framework in Frameworks */,
+				FD2CC1AB1E2F61F900BA7DE1 /* (null) in Frameworks */,
 				FD6939021E2DCCAF001993B9 /* MapKit.framework in Frameworks */,
 				FD0DB1141E2E273100561643 /* libopencore-amrwb.a in Frameworks */,
 				FD6939001E2DCCA3001993B9 /* CoreLocation.framework in Frameworks */,
 				FD6938FE1E2DCC8D001993B9 /* libresolv.tbd in Frameworks */,
+				208F27011F18B6F9005EEBF9 /* HyphenateLite.framework in Frameworks */,
 				FD848F3B1E1CE8F100792FD6 /* libstdc++.tbd in Frameworks */,
 				FD0DB1131E2E273100561643 /* libopencore-amrnb.a in Frameworks */,
 				FD6938FA1E2DCC49001993B9 /* libiconv.tbd in Frameworks */,
@@ -2253,7 +2252,7 @@
 		FD848F341E1CE62C00792FD6 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				20794A831E6069C600414FE6 /* HyphenateLite.framework */,
+				208F27001F18B6F9005EEBF9 /* HyphenateLite.framework */,
 				FD848F351E1CE62C00792FD6 /* AlipaySDK */,
 			);
 			path = ThirdParty;
@@ -2657,7 +2656,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		FDEA71BA1DE5937300E84CA0 /* [CP] Embed Pods Frameworks */ = {
@@ -3176,6 +3175,7 @@
 					"$(PROJECT_DIR)/ArtEast/ThirdParty/AlipaySDK",
 					"$(PROJECT_DIR)/ArtEast/Classes/EaseMob(环信)/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/ArtEast/Classes/EaseMob(环信)/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/ArtEast/ThirdParty",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cydf.ArtEastDis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3219,6 +3219,14 @@
 					"$(PROJECT_DIR)/ArtEast/ThirdParty/AlipaySDK",
 					"$(PROJECT_DIR)/ArtEast/Classes/EaseMob(环信)/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/ArtEast/Classes/EaseMob(环信)/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/ArtEast/ThirdParty",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ArtEast/ThirdParty/AlipaySDK",
+					"$(PROJECT_DIR)/ArtEast/Classes/EaseMob(环信)/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/ArtEast/Classes/EaseMob(环信)/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/ArtEast/ThirdParty",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cydf.ArtEastDis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
