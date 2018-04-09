@@ -37,7 +37,7 @@
 
 //无网
 - (void)blankView {
-    _defaultView = [[DefaultView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-64-42)];
+    _defaultView = [[DefaultView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-kNavBarH-42)];
     _defaultView.delegate = self;
     _defaultView.hidden = YES;
     [self.view addSubview:_defaultView];
@@ -118,7 +118,7 @@
 
 - (void)initView {
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-64-42) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-kNavBarH-42) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = NO;

@@ -55,7 +55,7 @@
     [self.view addSubview:_scrollView];
     _scrollView.contentSize = CGSizeMake(WIDTH, _scrollView.height+1);
 
-    UIImageView *logoImg = [[UIImageView alloc]initWithFrame:CGRectMake((WIDTH-80)/2.0, 64+20, 80, 80)];
+    UIImageView *logoImg = [[UIImageView alloc]initWithFrame:CGRectMake((WIDTH-80)/2.0, kNavBarH+20, 80, 80)];
     logoImg.image = [UIImage imageNamed:@"BindPhone"];
     [_scrollView addSubview:logoImg];
 

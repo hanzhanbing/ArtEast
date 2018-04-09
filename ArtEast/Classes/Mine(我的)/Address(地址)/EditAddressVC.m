@@ -98,7 +98,7 @@
     self.navItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:navRightBtn];
     
     //姓名
-    _nameTF = [[UITextField alloc] initWithFrame:CGRectMake(15, 64, WIDTH-30, 50)];
+    _nameTF = [[UITextField alloc] initWithFrame:CGRectMake(15, kNavBarH, WIDTH-30, 50)];
     [_nameTF becomeFirstResponder];
     _nameTF.textColor = LightBlackColor;
     _nameTF.placeholder = @"姓名";

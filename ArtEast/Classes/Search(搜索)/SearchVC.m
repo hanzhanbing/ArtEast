@@ -43,7 +43,7 @@
     
     if (_historyArr.count==0) {
         _historyView.hidden = YES;
-        _hotView.y = 64;
+        _hotView.y = kNavBarH;
     } else {
         _historyView.hidden = NO;
         _hotView.y = _historyView.maxY;
@@ -101,7 +101,7 @@
 - (void)initView {
     
     //历史记录
-    _historyView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, 50)];
+    _historyView = [[UIView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 50)];
     [self.view addSubview:_historyView];
     
     UILabel *historyLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 16, 100, 20)];
@@ -148,7 +148,7 @@
     
     if (_historyArr.count==0) {
         _historyView.hidden = YES;
-        _hotView.y = 64;
+        _hotView.y = kNavBarH;
     } else {
         _historyView.hidden = NO;
         _hotView.y = _historyView.maxY;
@@ -175,7 +175,7 @@
     [_historyArr removeAllObjects];
     [defaults removeObjectForKey:@"searchHisArr"];
     _historyView.hidden = YES;
-    _hotView.y = 64;
+    _hotView.y = kNavBarH;
 }
 
 #pragma mark - 显示/隐藏取消按钮

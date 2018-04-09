@@ -241,7 +241,7 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         //设置滚动方向
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-106-49) collectionViewLayout:flowLayout];
+        _mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-106-kTabBarH) collectionViewLayout:flowLayout];
         _mainCollectionView.delegate = self;
         _mainCollectionView.dataSource = self;
         _mainCollectionView.showsVerticalScrollIndicator = NO;
@@ -403,7 +403,7 @@
 {
     if (section == 0)
     {
-        return CGSizeMake(WIDTH, HEIGHT-106-49-145);
+        return CGSizeMake(WIDTH, HEIGHT-42-kNavBarH-kTabBarH-145);
     }
     else if (section == 1)
     {

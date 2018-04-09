@@ -72,7 +72,7 @@
         [controllersArr addObject:classifySubListVC];
     }
     
-    OptionBarController *navTabBarController = [[OptionBarController alloc] initWithFrame:CGRectMake(0, 64, WIDTH, 42) andSubViewControllers:controllersArr andParentViewController:self andSelectedViewColor:[UIColor whiteColor] andSelectedTextColor:[UIColor blackColor] andShowSeperateLine:NO andShowBottomLine:YES andCurrentPage:self.currentPage];
+    OptionBarController *navTabBarController = [[OptionBarController alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 42) andSubViewControllers:controllersArr andParentViewController:self andSelectedViewColor:[UIColor whiteColor] andSelectedTextColor:[UIColor blackColor] andShowSeperateLine:NO andShowBottomLine:YES andCurrentPage:self.currentPage];
     navTabBarController.linecolor=OptionBarLineColor;
 }
 

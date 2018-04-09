@@ -21,67 +21,47 @@ static NetworkUtil *_instance;
     return _instance;
 }
 
-+ (NetworkType )currentNetworkStatus
-{
-    NetworkType nNetworkType = NET_UNKNOWN; //默认无网
-    
-    ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
-    
-    if (status == RealStatusNotReachable) // || status == RealStatusUnknown
-    {
-        nNetworkType = NET_UNKNOWN; //无网
-    }
-    
-    if (status == RealStatusViaWiFi)
-    {
-        nNetworkType = NET_WIFI; //WiFi
-    }
-    
-    WWANAccessType accessType = [GLobalRealReachability currentWWANtype];
-    
-    if (status == RealStatusViaWWAN)
-    {
-        nNetworkType = NET_WWAN; //移动网络
-        
-        if (accessType == WWANType2G)
-        {
-            nNetworkType = NET_2G; //2G
-        }
-        else if (accessType == WWANType3G)
-        {
-            nNetworkType = NET_3G; //3G
-        }
-        else if (accessType == WWANType4G)
-        {
-            nNetworkType = NET_4G; //4G
-        }
-    }
-    
-    return nNetworkType;
-}
-
 - (void)listening
 {
-    [GLobalRealReachability startNotifier];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(networkChanged:)
-                                                 name:kRealReachabilityChangedNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    NSString *remoteHostName = @"www.apple.com";
+    self.hostReachability = [Reachability reachabilityWithHostName:remoteHostName];
+    [self.hostReachability startNotifier];
 }
 
-- (void)networkChanged:(NSNotification *)note
+/*!
+ * Called by Reachability whenever status changes.
+ */
+- (void) reachabilityChanged:(NSNotification *)note
 {
-    if ([NetworkUtil currentNetworkStatus]!=NET_UNKNOWN) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"kNetAppear" object:nil];
-    } else {     
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"kNetDisAppear" object:nil];
+    Reachability *reachability = [note object];
+    NSParameterAssert([reachability isKindOfClass:[Reachability class]]);
+    NetworkStatus netStatus = [reachability currentReachabilityStatus];
+    
+    switch (netStatus) {
+        case NotReachable:{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kNetDisAppear" object:nil];
+            break;
+        }
+        case ReachableViaWWAN:{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kNetAppear" object:nil];
+            break;
+        }
+        case ReachableViaWiFi:{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kNetAppear" object:nil];
+            break;
+        }
     }
+}
+
++ (NetworkStatus)currentNetworkStatus {
+    Reachability *reach = [Reachability reachabilityForInternetConnection];
+    return [reach currentReachabilityStatus];
 }
 
 - (void)dealloc
 {
-    [GLobalRealReachability stopNotifier];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 @end

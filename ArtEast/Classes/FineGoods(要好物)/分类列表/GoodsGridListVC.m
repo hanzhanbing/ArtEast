@@ -43,7 +43,7 @@
         UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
         //设置滚动方向
         [flowlayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0 , 0 , WIDTH, HEIGHT - 106 - 49) collectionViewLayout:flowlayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0 , 0 , WIDTH, HEIGHT - 106 - kTabBarH) collectionViewLayout:flowlayout];
         _collectionView.alpha = 0;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
@@ -379,7 +379,7 @@
 
 //无网
 - (void)blankView {
-    _defaultView = [[DefaultView alloc] initWithFrame:CGRectMake(0, 0.5, WIDTH, HEIGHT-106-49-0.5)];
+    _defaultView = [[DefaultView alloc] initWithFrame:CGRectMake(0, 0.5, WIDTH, HEIGHT-106-kTabBarH-0.5)];
     _defaultView.delegate = self;
     _defaultView.hidden = YES;
     [self.view addSubview:_defaultView];

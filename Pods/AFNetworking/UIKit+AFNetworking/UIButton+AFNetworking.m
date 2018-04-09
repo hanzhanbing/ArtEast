@@ -1,4 +1,4 @@
- // UIButton+AFNetworking.m
+// UIButton+AFNetworking.m
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -103,10 +103,7 @@ static const char * af_backgroundImageDownloadReceiptKeyForState(UIControlState 
 
 + (AFImageDownloader *)sharedImageDownloader {
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wgnu"
     return objc_getAssociatedObject(self, @selector(sharedImageDownloader)) ?: [AFImageDownloader defaultInstance];
-#pragma clang diagnostic pop
 }
 
 + (void)setSharedImageDownloader:(AFImageDownloader *)imageDownloader {

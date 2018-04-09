@@ -177,7 +177,7 @@
     _scrollView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_scrollView];
     
-    UIImageView *topImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, 3)];
+    UIImageView *topImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 3)];
     topImageView.image = [UIImage imageNamed:@"AddressIcon"];
     [_scrollView addSubview:topImageView];
     

@@ -58,7 +58,7 @@
 #pragma mark - init view 
 
 - (void)initView {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, 98) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 98) style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -222,7 +222,7 @@
             if (status == Request_Success) {
                 if ([responseData isKindOfClass:[NSDictionary class]]) {
                     //调起微信支付
-                    PayReq* req             = [[PayReq alloc] init];
+                    PayReq *req             = [[PayReq alloc] init];
                     req.openID              = responseData[@"appid"];
                     req.partnerId           = responseData[@"partnerid"];
                     req.prepayId            = responseData[@"prepayid"];

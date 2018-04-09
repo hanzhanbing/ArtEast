@@ -46,56 +46,56 @@ static NetworkManager *_manager = nil;
        imagePath:(NSString *)imagePath
       completion:(RequestCompletion)completion {
     
-    self.securityPolicy = [self customSecurityPolicy];
+//    self.securityPolicy = [self customSecurityPolicy];
     
     [self configNetManager];
     
-    __weak typeof(self) weakSelf = self;
-    [self setSessionDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession *session, NSURLAuthenticationChallenge *challenge, NSURLCredential *__autoreleasing *_credential) {
-        
-        // 获取服务器的trust object
-        SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
-        //导入自签名证书
-        NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"cydfDis" ofType:@"cer"]; //server/cydfDis
-        NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
-        NSSet *cerSet = [NSSet setWithObjects:cerData,nil];
-        weakSelf.securityPolicy.pinnedCertificates = cerSet;
-        
-        SecCertificateRef caRef = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)cerData);
-        NSCAssert(caRef != nil, @"caRef is nil");
-        
-        NSArray *caArray = @[(__bridge id)(caRef)];
-        NSCAssert(caArray != nil, @"caArray is nil");
-        
-        OSStatus status = SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef)caArray);
-        SecTrustSetAnchorCertificatesOnly(serverTrust,NO);
-        NSCAssert(errSecSuccess == status, @"SecTrustSetAnchorCertificates failed");
-        //选择质询认证的处理方式
-        NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-        __autoreleasing NSURLCredential *credential = nil;
-        
-        //NSURLAuthenticationMethodServerTrust质询认证方式
-        if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-            //基于客户端的安全策略来决定是否信任该服务器，不信任则不响应质询 。
-            if ([weakSelf.securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:challenge.protectionSpace.host]) {
-                //创建质询证书
-                credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-                //确认质询方式
-                if (credential) {
-                    disposition = NSURLSessionAuthChallengeUseCredential;
-                } else {
-                    disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-                }
-            } else {
-                //取消质询
-                disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;
-            }
-        } else {
-            disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-        }
-        
-        return disposition;
-    }];
+//    __weak typeof(self) weakSelf = self;
+//    [self setSessionDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession *session, NSURLAuthenticationChallenge *challenge, NSURLCredential *__autoreleasing *_credential) {
+//
+//        // 获取服务器的trust object
+//        SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
+//        //导入自签名证书
+//        NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"cydfDis" ofType:@"cer"]; //server/cydfDis
+//        NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
+//        NSSet *cerSet = [NSSet setWithObjects:cerData,nil];
+//        weakSelf.securityPolicy.pinnedCertificates = cerSet;
+//
+//        SecCertificateRef caRef = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)cerData);
+//        NSCAssert(caRef != nil, @"caRef is nil");
+//
+//        NSArray *caArray = @[(__bridge id)(caRef)];
+//        NSCAssert(caArray != nil, @"caArray is nil");
+//
+//        OSStatus status = SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef)caArray);
+//        SecTrustSetAnchorCertificatesOnly(serverTrust,NO);
+//        NSCAssert(errSecSuccess == status, @"SecTrustSetAnchorCertificates failed");
+//        //选择质询认证的处理方式
+//        NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+//        __autoreleasing NSURLCredential *credential = nil;
+//
+//        //NSURLAuthenticationMethodServerTrust质询认证方式
+//        if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+//            //基于客户端的安全策略来决定是否信任该服务器，不信任则不响应质询 。
+//            if ([weakSelf.securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:challenge.protectionSpace.host]) {
+//                //创建质询证书
+//                credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+//                //确认质询方式
+//                if (credential) {
+//                    disposition = NSURLSessionAuthChallengeUseCredential;
+//                } else {
+//                    disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+//                }
+//            } else {
+//                //取消质询
+//                disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;
+//            }
+//        } else {
+//            disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+//        }
+//
+//        return disposition;
+//    }];
     
     NSMutableDictionary *params = [parameters mutableCopy];
     

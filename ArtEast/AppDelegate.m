@@ -149,7 +149,7 @@
     myTabBarController.delegate = self;
     
     //改变tabBar的背景颜色
-    UIView *barBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 49)];
+    UIView *barBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, kTabBarH)];
     barBgView.backgroundColor = [UIColor blackColor];
     [myTabBarController.tabBar insertSubview:barBgView atIndex:0];
     myTabBarController.tabBar.opaque = YES;

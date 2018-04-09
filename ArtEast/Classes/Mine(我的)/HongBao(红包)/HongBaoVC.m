@@ -47,7 +47,7 @@
 
 //无网
 - (void)blankView {
-    _defaultView = [[DefaultView alloc] initWithFrame:CGRectMake(0, 64+WIDTH/3, WIDTH, HEIGHT-64-WIDTH/3)];
+    _defaultView = [[DefaultView alloc] initWithFrame:CGRectMake(0, kNavBarH+WIDTH/3, WIDTH, HEIGHT-kNavBarH-WIDTH/3)];
     _defaultView.delegate = self;
     _defaultView.hidden = YES;
     [self.view addSubview:_defaultView];
@@ -63,7 +63,7 @@
 
 - (void)initTab {
     if (!self.tableView) {
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+WIDTH/3, WIDTH, HEIGHT-64-WIDTH/3) style:UITableViewStyleGrouped];
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavBarH+WIDTH/3, WIDTH, HEIGHT-kNavBarH-WIDTH/3) style:UITableViewStyleGrouped];
         self.tableView.backgroundColor = [UIColor clearColor];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
@@ -78,7 +78,7 @@
 
 - (UIView *)tableHeaderView {
     if (!_tableHeaderView) {
-        _tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, WIDTH/3+64)];
+        _tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, WIDTH/3+kNavBarH)];
         _tableHeaderView.backgroundColor = AppThemeColor;
         
         //返回

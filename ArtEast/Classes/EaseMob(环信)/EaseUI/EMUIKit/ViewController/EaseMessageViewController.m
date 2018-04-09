@@ -176,7 +176,7 @@
 
 - (UIView *)headerView {
     if (!_headerView) {
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, self.height)];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, self.height)];
         
 //        _timeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 40)];
 //        _timeLab.text = @"16:01";
@@ -416,7 +416,7 @@
     }
 
     CGRect tableFrame = self.tableView.frame;
-    tableFrame.size.height = self.view.frame.size.height - _chatToolbar.frame.size.height - 64- self.height;
+    tableFrame.size.height = self.view.frame.size.height - _chatToolbar.frame.size.height - kNavBarH- self.height;
     self.tableView.frame = tableFrame;
     if ([chatToolbar isKindOfClass:[EaseChatToolbar class]]) {
         [(EaseChatToolbar *)self.chatToolbar setDelegate:self];
@@ -1258,8 +1258,8 @@
 {
     [UIView animateWithDuration:0.3 animations:^{
         CGRect rect = self.tableView.frame;
-        rect.origin.y = 64+self.height;
-        rect.size.height = self.view.frame.size.height - toHeight - 64 - self.height;
+        rect.origin.y = kNavBarH+self.height;
+        rect.size.height = self.view.frame.size.height - toHeight - kNavBarH - self.height;
         self.tableView.frame = rect;
     }];
 

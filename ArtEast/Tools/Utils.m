@@ -19,7 +19,7 @@
 
 //判断网络状态
 + (BOOL)getNetStatus {
-    if ([NetworkUtil currentNetworkStatus] != NET_UNKNOWN) { //有网
+    if ([NetworkUtil currentNetworkStatus] != NotReachable) { //有网
         return YES;
     } else {
         return NO;

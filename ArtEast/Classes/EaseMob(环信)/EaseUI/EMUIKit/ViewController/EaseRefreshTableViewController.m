@@ -42,7 +42,7 @@
 //        self.edgesForExtendedLayout =  UIRectEdgeNone;
 //    }
 
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+_height, self.view.frame.size.width, self.view.frame.size.height-46-64-_height) style:self.style];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavBarH+_height, self.view.frame.size.width, self.view.frame.size.height-46-kNavBarH-_height) style:self.style];
 //    _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _tableView.backgroundColor = AEColor(236, 236, 236, 1);
     _tableView.delegate = self;

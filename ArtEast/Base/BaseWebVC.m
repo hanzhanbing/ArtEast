@@ -195,7 +195,7 @@
 
 - (void)configUI {
     // 进度条
-    _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, 0)];
+    _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 0)];
     _progressView.hidden = YES;
     _progressView.tintColor = AppThemeColor;
     _progressView.trackTintColor = [UIColor whiteColor];
@@ -205,7 +205,7 @@
     WKWebViewConfiguration * configuration = [[WKWebViewConfiguration alloc]init];
     _userContentController =[[WKUserContentController alloc]init];
     configuration.userContentController = _userContentController;
-    _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64) configuration:configuration];
+    _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-kNavBarH) configuration:configuration];
     //注册方法
     WKDelegateController *delegateController = [[WKDelegateController alloc]init];
     delegateController.delegate = self;
@@ -617,11 +617,11 @@
         if ([keyPath isEqualToString:@"contentOffset"]) {
             CGFloat y = _webView.scrollView.contentOffset.y;
             //NSLog(@"滑动距离：%f",y);
-            if (y>=0 && y<=64) {
-                CGFloat nav_alpha = y/64;
+            if (y>=0 && y<=kNavBarH) {
+                CGFloat nav_alpha = y/kNavBarH;
                 NSLog(@"透明度%f",nav_alpha);
                 self.navBar.alpha = nav_alpha;
-            }else if(y>64){
+            }else if(y>kNavBarH){
                 self.navBar.alpha = 1.0;
             }else{
                 self.navBar.alpha = 0.0;

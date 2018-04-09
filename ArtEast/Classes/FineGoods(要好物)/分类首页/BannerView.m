@@ -15,7 +15,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-106-49-145) imageNamesGroup:@[@"GoodsDefaultBig"]];
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-106-kTabBarH-145) imageNamesGroup:@[@"GoodsDefaultBig"]];
         _cycleScrollView.backgroundColor = [UIColor clearColor];
         _cycleScrollView.delegate = self;
         _cycleScrollView.pageDotColor = [UIColor whiteColor];

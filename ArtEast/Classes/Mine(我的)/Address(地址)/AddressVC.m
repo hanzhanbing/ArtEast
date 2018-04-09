@@ -43,7 +43,7 @@
 
 //无网
 - (void)blankView {
-    _defaultView = [[DefaultView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64-80)];
+    _defaultView = [[DefaultView alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-kNavBarH-80)];
     _defaultView.backgroundColor = [UIColor whiteColor];
     _defaultView.delegate = self;
     _defaultView.hidden = YES;
@@ -114,11 +114,11 @@
 #pragma mark - init view
 
 - (void)initView {
-//    UIImageView *topImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, 3)];
+//    UIImageView *topImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 3)];
 //    topImageView.image = [UIImage imageNamed:@"AddressIcon"];
 //    [self.view addSubview:topImageView];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64-80) style:UITableViewStyleGrouped];;
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-kNavBarH-80) style:UITableViewStyleGrouped];;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = NO;

@@ -73,7 +73,7 @@
     UIButton *headImageBtn = [[UIButton alloc]initWithFrame:CGRectMake(_headImgView.x, _headImgView.y, _headImgView.width,label.maxY-_headImgView.y)];
     [headImageBtn addTarget:self action:@selector(headClick) forControlEvents:UIControlEventTouchUpInside];
 
-    UIView *whiteView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, label.maxY+25-64)];
+    UIView *whiteView = [[UIView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, label.maxY+25-kNavBarH)];
     whiteView.backgroundColor = [UIColor whiteColor];
     [_scrollView addSubview:whiteView];
     [_scrollView addSubview:_headImgView];

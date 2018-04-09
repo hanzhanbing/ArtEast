@@ -76,7 +76,7 @@
     [_userContentController addScriptMessageHandler:delegateController name:@"contentHref"]; //跳原生列表页
     
     //精选话题
-    _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-113)configuration:configuration];
+    _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-113)configuration:configuration];
     _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _webView.UIDelegate = self;
     _webView.navigationDelegate = self;
@@ -85,7 +85,7 @@
     [self.view addSubview:_webView];
     
     //设计师说
-    _webView1 = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-113)configuration:configuration];
+    _webView1 = [[WKWebView alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-113)configuration:configuration];
     _webView1.hidden = YES;
     _webView1.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _webView1.UIDelegate = self;

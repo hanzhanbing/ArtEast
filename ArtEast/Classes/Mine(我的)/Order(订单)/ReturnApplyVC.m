@@ -85,7 +85,7 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
 - (void)initViews{
 
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-BottomHeight-64)];
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-BottomHeight-kNavBarH)];
     _scrollView.backgroundColor = [UIColor redColor];
     _scrollView.delegate = self;
     _scrollView.showsVerticalScrollIndicator = NO;

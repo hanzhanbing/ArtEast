@@ -519,7 +519,7 @@
     [self.view addSubview:_scrollView];
     
     //地址  所在视图
-    addressView = [[UIButton alloc]initWithFrame:CGRectMake(0, 64, WIDTH, 103)];
+    addressView = [[UIButton alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 103)];
     addressView.backgroundColor = [UIColor whiteColor];
     [addressView addTarget:self action:@selector(addressManager) forControlEvents:UIControlEventTouchUpInside];
     [_scrollView addSubview:addressView];

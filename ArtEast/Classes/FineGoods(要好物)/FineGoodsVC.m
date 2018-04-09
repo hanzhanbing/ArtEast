@@ -53,7 +53,7 @@
     
     [self initNav];
     
-    [self blankView];
+//    [self blankView];
     
     controllersArr = [NSMutableArray array];
     categoryArr = [NSMutableArray array];
@@ -76,7 +76,7 @@
     //改变关注图标状态通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCollectState:) name:kCollectNotification object:nil];
     
-    tabbarImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, HEIGHT-49, WIDTH, 49)];
+    tabbarImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, HEIGHT-kTabBarH, WIDTH, kTabBarH)];
     [self.view addSubview:tabbarImgView];
     
     [self checkUpdate]; //版本更新
@@ -318,7 +318,7 @@
                 [controllersArr addObject:goodsGridListVC];
             }
             
-            OptionBarController *navTabBarController = [[OptionBarController alloc] initWithFrame:CGRectMake(0, 64, WIDTH, 42) andSubViewControllers:controllersArr andParentViewController:self andSelectedViewColor:[UIColor whiteColor] andSelectedTextColor:[UIColor blackColor] andShowSeperateLine:NO andShowBottomLine:YES andCurrentPage:0];
+            OptionBarController *navTabBarController = [[OptionBarController alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 42)          andSubViewControllers:controllersArr andParentViewController:self andSelectedViewColor:[UIColor whiteColor] andSelectedTextColor:[UIColor blackColor] andShowSeperateLine:NO andShowBottomLine:YES andCurrentPage:0];
             navTabBarController.linecolor=OptionBarLineColor;
         } else {
             shoppingCartBtn.hidden = YES;

@@ -139,7 +139,7 @@
 
 - (void)initView {
     
-    _pageFlowView = [[NewPagedFlowView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-150)];
+    _pageFlowView = [[NewPagedFlowView alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-150)];
     _pageFlowView.alpha = 0;
     _pageFlowView.backgroundColor = [UIColor clearColor];
     _pageFlowView.delegate = self;

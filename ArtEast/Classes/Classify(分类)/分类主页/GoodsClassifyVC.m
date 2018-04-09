@@ -155,7 +155,7 @@ UICollectionViewDataSource,UISearchBarDelegate>
         flowlayout.minimumInteritemSpacing = 2;
         //上下间距
         flowlayout.minimumLineSpacing = 2;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(1 + 80, 64, WIDTH - 80 - 1, HEIGHT-64-49) collectionViewLayout:flowlayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(1 + 80, kNavBarH, WIDTH - 80 - 1, HEIGHT-kNavBarH-kTabBarH) collectionViewLayout:flowlayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = NO;

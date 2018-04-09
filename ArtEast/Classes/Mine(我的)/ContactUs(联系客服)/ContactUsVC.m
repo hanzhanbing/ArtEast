@@ -19,7 +19,7 @@
     
     self.title = @"联系客服";
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, WIDTH/3)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, WIDTH/3)];
     imageView.image = [UIImage imageNamed:@"ContactUs"];
     [self.view addSubview:imageView];
     

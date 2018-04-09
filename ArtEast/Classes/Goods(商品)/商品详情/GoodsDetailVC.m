@@ -733,7 +733,7 @@
     [_tableFooterView addSubview:tipLab];
     
     //下UIWebView
-    self.detailWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, self.tableView.maxY+64, WIDTH, HEIGHT-64-49)];
+    self.detailWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, self.tableView.maxY+kNavBarH, WIDTH, HEIGHT-kNavBarH-kTabBarH)];
     self.detailWebView.alpha = 0;
     self.detailWebView.opaque = NO; //不设置这个值 页面背景始终是白色
     self.detailWebView.backgroundColor = [UIColor clearColor];

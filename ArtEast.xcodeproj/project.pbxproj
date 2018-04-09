@@ -14,8 +14,9 @@
 		20827C841E10AE3D0046F276 /* CouponVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20827C831E10AE3D0046F276 /* CouponVC.m */; };
 		20827C8B1E10D4170046F276 /* CouponItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20827C8A1E10D4170046F276 /* CouponItemVC.m */; };
 		20827C8E1E10E64A0046F276 /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20827C8D1E10E64A0046F276 /* CouponModel.m */; };
-		208F27011F18B6F9005EEBF9 /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 208F27001F18B6F9005EEBF9 /* HyphenateLite.framework */; };
 		2099BFAD1E33726200E7CAA5 /* TrackOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099BFAC1E33726200E7CAA5 /* TrackOrderCell.m */; };
+		96A1DEE6207B57B50052E30F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A1DEE4207B57B50052E30F /* Reachability.m */; };
+		96A1DEEB207B95F00052E30F /* BaseNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A1DEEA207B95EF0052E30F /* BaseNavBar.m */; };
 		FD078B541E08C9CF001B504A /* 启动页@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD078B531E08C9CF001B504A /* 启动页@2x.png */; };
 		FD0B2B1C1E56A9FA001D13CF /* LimitBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0B2B1B1E56A9FA001D13CF /* LimitBuyView.m */; };
 		FD0B2B1F1E56C462001D13CF /* DesignerSayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0B2B1E1E56C462001D13CF /* DesignerSayView.m */; };
@@ -358,11 +359,14 @@
 		20827C8A1E10D4170046F276 /* CouponItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponItemVC.m; sourceTree = "<group>"; };
 		20827C8C1E10E64A0046F276 /* CouponModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
 		20827C8D1E10E64A0046F276 /* CouponModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
-		208F27001F18B6F9005EEBF9 /* HyphenateLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyphenateLite.framework; sourceTree = "<group>"; };
 		2099BFAB1E33726200E7CAA5 /* TrackOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackOrderCell.h; sourceTree = "<group>"; };
 		2099BFAC1E33726200E7CAA5 /* TrackOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackOrderCell.m; sourceTree = "<group>"; };
 		2E18ECDE7D672DA9F32A20E2 /* Pods-ArtEast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtEast.release.xcconfig"; path = "Pods/Target Support Files/Pods-ArtEast/Pods-ArtEast.release.xcconfig"; sourceTree = "<group>"; };
 		54E1A2B87AB2403B8D5AD28B /* libPods-ArtEast.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ArtEast.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		96A1DEE4207B57B50052E30F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		96A1DEE5207B57B50052E30F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		96A1DEE9207B95EF0052E30F /* BaseNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavBar.h; sourceTree = "<group>"; };
+		96A1DEEA207B95EF0052E30F /* BaseNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavBar.m; sourceTree = "<group>"; };
 		BDCC5F8466E9C905660EB834 /* Pods-ArtEast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtEast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArtEast/Pods-ArtEast.debug.xcconfig"; sourceTree = "<group>"; };
 		FD078B531E08C9CF001B504A /* 启动页@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "启动页@2x.png"; sourceTree = "<group>"; };
 		FD0B2B1A1E56A9FA001D13CF /* LimitBuyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitBuyView.h; sourceTree = "<group>"; };
@@ -997,7 +1001,6 @@
 				FD0DB1141E2E273100561643 /* libopencore-amrwb.a in Frameworks */,
 				FD6939001E2DCCA3001993B9 /* CoreLocation.framework in Frameworks */,
 				FD6938FE1E2DCC8D001993B9 /* libresolv.tbd in Frameworks */,
-				208F27011F18B6F9005EEBF9 /* HyphenateLite.framework in Frameworks */,
 				FD848F3B1E1CE8F100792FD6 /* libstdc++.tbd in Frameworks */,
 				FD0DB1131E2E273100561643 /* libopencore-amrnb.a in Frameworks */,
 				FD6938FA1E2DCC49001993B9 /* libiconv.tbd in Frameworks */,
@@ -1024,6 +1027,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96A1DEE3207B57B50052E30F /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				96A1DEE4207B57B50052E30F /* Reachability.m */,
+				96A1DEE5207B57B50052E30F /* Reachability.h */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		AA510F174F7404112063815D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1864,6 +1876,8 @@
 				20182F0D1DFD001500E83215 /* AEAnimator.m */,
 				FD6403CF1D9CF0FB00BA4940 /* BaseVC.h */,
 				FD6403D01D9CF0FB00BA4940 /* BaseVC.m */,
+				96A1DEE9207B95EF0052E30F /* BaseNavBar.h */,
+				96A1DEEA207B95EF0052E30F /* BaseNavBar.m */,
 				FD7D3AC01DB4CF030020F0B6 /* BaseWebVC.h */,
 				FD7D3AC11DB4CF030020F0B6 /* BaseWebVC.m */,
 				FD8CEF471DBF45970081ACE9 /* WKDelegateController.h */,
@@ -2252,7 +2266,7 @@
 		FD848F341E1CE62C00792FD6 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				208F27001F18B6F9005EEBF9 /* HyphenateLite.framework */,
+				96A1DEE3207B57B50052E30F /* Reachability */,
 				FD848F351E1CE62C00792FD6 /* AlipaySDK */,
 			);
 			path = ThirdParty;
@@ -2650,13 +2664,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ArtEast-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FDEA71BA1DE5937300E84CA0 /* [CP] Embed Pods Frameworks */ = {
@@ -2665,9 +2682,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ArtEast/Pods-ArtEast-frameworks.sh",
+				"${PODS_ROOT}/HyphenateLite/iOS_IM_SDK_V3.3.9/HyphenateSDK/HyphenateLite.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HyphenateLite.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2680,9 +2700,30 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ArtEast/Pods-ArtEast-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
+				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialSDK/UMSocialSDKPromptResources.bundle",
+				"${PODS_ROOT}/UMengUShare/UShareSDK/SocialLibraries/QQ/QQSDK/TencentOpenApi_IOS_Bundle.bundle",
+				"${PODS_ROOT}/UMengUShare/UShareSDK/SocialLibraries/Sina/SinaSDK/WeiboSDK.bundle",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-back.png",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-help.html",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-helpicons.png",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-samples.png",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKPromptResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TencentOpenApi_IOS_Bundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zbar-back.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zbar-help.html",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zbar-helpicons.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zbar-samples.png",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2800,6 +2841,7 @@
 				FD0DB1161E2E273100561643 /* MBProgressHUD.m in Sources */,
 				FD7714761E275B7A00AD8098 /* UIButton+PPCounter.m in Sources */,
 				FDEA716B1DE5937300E84CA0 /* GuideVC.m in Sources */,
+				96A1DEEB207B95F00052E30F /* BaseNavBar.m in Sources */,
 				FD80D3311E00DF6E00A1C534 /* GoodsSpecModel.m in Sources */,
 				FD0B2B331E56DE07001D13CF /* GoodsListVC.m in Sources */,
 				FD0DB1671E2E273100561643 /* EaseFacialView.m in Sources */,
@@ -2818,6 +2860,7 @@
 				FD0DB12F1E2E273100561643 /* UIView+EMWebCacheOperation.m in Sources */,
 				FDC6CC571E554E4600D412F7 /* GoodsGridListVC.m in Sources */,
 				FDD12DFF1E232F150048E3E3 /* HongBaoModel.m in Sources */,
+				96A1DEE6207B57B50052E30F /* Reachability.m in Sources */,
 				FDEA71701DE5937300E84CA0 /* AESubTypeInfo.m in Sources */,
 				FD433D3E1DFA7BDF00AA8091 /* GoodsCommentModel.m in Sources */,
 				FDEA71721DE5937300E84CA0 /* WKDelegateController.m in Sources */,

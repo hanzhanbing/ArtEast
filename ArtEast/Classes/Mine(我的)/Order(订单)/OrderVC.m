@@ -138,7 +138,7 @@
     
     
     NSArray *controllersArr = @[allOrderVC, unPayOrderVC, untreatedOrderVC, treatedOrderVC,unCommentOrderVC];
-    OptionBarController *navTabBarController = [[OptionBarController alloc] initWithFrame:CGRectMake(0, 64, WIDTH, 42) andSubViewControllers:controllersArr andParentViewController:self andSelectedViewColor:[UIColor whiteColor] andSelectedTextColor:[UIColor blackColor] andShowSeperateLine:NO andShowBottomLine:YES andCurrentPage:_currentPage];
+    OptionBarController *navTabBarController = [[OptionBarController alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 42) andSubViewControllers:controllersArr andParentViewController:self andSelectedViewColor:[UIColor whiteColor] andSelectedTextColor:[UIColor blackColor] andShowSeperateLine:NO andShowBottomLine:YES andCurrentPage:_currentPage];
     navTabBarController.linecolor=LightYellowColor;
     
     //自动下拉刷新

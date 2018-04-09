@@ -1,85 +1,87 @@
 PODS:
   - AESCrypt (0.0.1)
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
+  - AFNetworking (3.2.0):
+    - AFNetworking/NSURLSession (= 3.2.0)
+    - AFNetworking/Reachability (= 3.2.0)
+    - AFNetworking/Security (= 3.2.0)
+    - AFNetworking/Serialization (= 3.2.0)
+    - AFNetworking/UIKit (= 3.2.0)
+  - AFNetworking/NSURLSession (3.2.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
+  - AFNetworking/Reachability (3.2.0)
+  - AFNetworking/Security (3.2.0)
+  - AFNetworking/Serialization (3.2.0)
+  - AFNetworking/UIKit (3.2.0):
     - AFNetworking/NSURLSession
   - FXBlurView (1.6.4)
-  - IQKeyboardManager (4.0.7)
-  - JPush-iOS-SDK (2.1.9)
-  - Masonry (1.0.2)
+  - HyphenateLite (3.3.9)
+  - IQKeyboardManager (5.0.7)
+  - JPush-iOS-SDK (3.0.5)
+  - libWeChatSDK (1.7.5)
+  - Masonry (1.1.0)
   - MJExtension (3.0.13)
-  - MJRefresh (3.0.8)
-  - RealReachability (1.1.8):
-    - RealReachability/Connection (= 1.1.8)
-    - RealReachability/Ping (= 1.1.8)
-  - RealReachability/Connection (1.1.8)
-  - RealReachability/Ping (1.1.8)
-  - SDCycleScrollView (1.65):
-    - SDWebImage (~> 3.7)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
-  - TZImagePickerController (1.6.8)
-  - UMengAnalytics-NO-IDFA (4.1.3)
-  - UMengUShare/Core (6.0.3):
+  - MJRefresh (3.1.15.3)
+  - SDCycleScrollView (1.75):
+    - SDWebImage (>= 4.0.0)
+  - SDWebImage (4.3.0):
+    - SDWebImage/Core (= 4.3.0)
+  - SDWebImage/Core (4.3.0)
+  - TZImagePickerController (2.0.0.6)
+  - UMengAnalytics-NO-IDFA (4.2.5)
+  - UMengUShare/Core (6.4.8.2):
     - UMengUShare/Network
-  - UMengUShare/Network (6.0.3)
-  - UMengUShare/Social/QQ (6.0.3):
+  - UMengUShare/Network (6.4.8.2)
+  - UMengUShare/Social/QQ (6.4.8.2):
     - UMengUShare/Core
-  - UMengUShare/Social/Sina (6.0.3):
+    - UMengUShare/Social/ReducedQQ
+  - UMengUShare/Social/ReducedQQ (6.4.8.2):
     - UMengUShare/Core
-  - UMengUShare/Social/WeChat (6.0.3):
+  - UMengUShare/Social/ReducedSina (6.4.8.2):
     - UMengUShare/Core
+  - UMengUShare/Social/Sina (6.4.8.2):
+    - UMengUShare/Core
+    - UMengUShare/Social/ReducedSina
   - ZBarSDK (1.3.1)
 
 DEPENDENCIES:
-  - AESCrypt (~> 0.0.1)
-  - AFNetworking (~> 3.1.0)
-  - FXBlurView (~> 1.6.4)
-  - IQKeyboardManager (~> 4.0.7)
-  - JPush-iOS-SDK (~> 2.1.9)
-  - Masonry (~> 1.0.1)
-  - MJExtension (~> 3.0.13)
-  - MJRefresh (~> 3.0.8)
-  - RealReachability (~> 1.1.7)
-  - SDCycleScrollView (~> 1.65)
-  - SDWebImage (~> 3.8.2)
-  - TZImagePickerController (~> 1.6.4)
-  - UMengAnalytics-NO-IDFA (~> 4.1.1)
+  - AESCrypt
+  - AFNetworking
+  - FXBlurView
+  - HyphenateLite
+  - IQKeyboardManager
+  - JPush-iOS-SDK
+  - libWeChatSDK
+  - Masonry
+  - MJExtension
+  - MJRefresh
+  - SDCycleScrollView
+  - SDWebImage
+  - TZImagePickerController
+  - UMengAnalytics-NO-IDFA
   - UMengUShare/Social/QQ
   - UMengUShare/Social/Sina
-  - UMengUShare/Social/WeChat
-  - ZBarSDK (~> 1.3.1)
+  - ZBarSDK
 
 SPEC CHECKSUMS:
   AESCrypt: 1d89bf8b0789cf274ab2205ea461adbe9321d5f8
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
-  IQKeyboardManager: 69002bb4fea60596b710e57d426abc00e5063630
-  JPush-iOS-SDK: c74e4f8d066dacf27c3d37257ee20157e44c316c
-  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  HyphenateLite: ea4401abe02101c627e4adc989b01ae21ca63f27
+  IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
+  JPush-iOS-SDK: f80e435b524449fd5101e247b044d4e48174ef5f
+  libWeChatSDK: e34a813bccc704856a33943bde8279be4e4c82a0
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
-  MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
-  RealReachability: e6c8a2bbffa316006e8c282efc1ee2567d61a920
-  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  TZImagePickerController: fdb508b0ab14310728fb0d7eb418a7ee0acea741
-  UMengAnalytics-NO-IDFA: b26a7003458204d4549b6bd132c2f07dd5942b86
-  UMengUShare: f231fc086d789d4e560a5090dcc13a2db15c686d
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
+  SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
+  TZImagePickerController: 028d1670cd46b2d35769503dd36a6b2d21eee563
+  UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
+  UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-PODFILE CHECKSUM: ccc8a1676b8f61aebb161db3cc80f1b8d56f8294
+PODFILE CHECKSUM: c650919aaa9015d22b1a5aac679556f8f10695b5
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.4.0

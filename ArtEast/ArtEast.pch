@@ -78,11 +78,16 @@
 #define iOS8 ([UIDevice currentDevice].systemVersion.floatValue >= 8.0f)
 #define iOS9 ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f)
 
-/*****************************屏幕宽高**************************/
+/********************屏幕宽高、系统版本、手机型号*******************/
 
 #define SCREEN_BOUNDS [[UIScreen mainScreen] bounds]
 #define WIDTH  [[UIScreen mainScreen] bounds].size.width
 #define HEIGHT [[UIScreen mainScreen] bounds].size.height
+#define kNavBarH (IS_IPhoneX?88:64)
+#define kStatusBarH (IS_IPhoneX?44:20)
+#define kTabBarH (IS_IPhoneX?83:49)
+#define IS_IOS_11 ([[[UIDevice currentDevice] systemVersion] floatValue]>=11.0)
+#define IS_IPhoneX (CGSizeEqualToSize(CGSizeMake(375.f, 812.f), [UIScreen mainScreen].bounds.size) || CGSizeEqualToSize(CGSizeMake(812.f, 375.f), [UIScreen mainScreen].bounds.size))
 
 /*****************************颜色*****************************/
 

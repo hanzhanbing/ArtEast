@@ -1,1 +1,1 @@
-../../../JPush-iOS-SDK/lib/JPUSHService.h
+../../../JPush-iOS-SDK/Lib/JPUSHService.h

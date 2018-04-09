@@ -339,7 +339,7 @@
     
     [self initViews]; //有数据
     
-    tabbarImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, HEIGHT-49, WIDTH, 49)];
+    tabbarImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, HEIGHT-kTabBarH, WIDTH, kTabBarH)];
     [self.view addSubview:tabbarImgView];
 }
 
@@ -475,15 +475,15 @@
 #pragma mark - init view
 
 - (void)initViews {
-    _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-64)];
+    _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-kNavBarH)];
     [self.view addSubview:_contentView];
     
-    CGFloat tabbarHeight = 49;
+    CGFloat tabbarHeight = kTabBarH;
     if (_isTabbarHidder) {
         tabbarHeight = 0;
     }
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-64-BottomHeight-tabbarHeight) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-kNavBarH-BottomHeight-tabbarHeight) style:UITableViewStyleGrouped];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.delegate = self;
@@ -532,7 +532,7 @@
     }
     self.tableView.tableFooterView = [[UIView alloc]init];
     
-    bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, HEIGHT-BottomHeight-tabbarHeight-64, WIDTH, BottomHeight)];
+    bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, HEIGHT-BottomHeight-tabbarHeight-kNavBarH, WIDTH, BottomHeight)];
     bottomView.hidden = YES;
     bottomView.backgroundColor = [UIColor whiteColor];
     bottomView.layer.borderColor = kColorFromRGBHex(0xE6E6E6).CGColor;

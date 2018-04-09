@@ -57,7 +57,7 @@
         [_controllersArr addObject:couponItemVC];
     }
     
-    OptionBarController *navTabBarController = [[OptionBarController alloc] initWithFrame:CGRectMake(0, 64, WIDTH, 42) andSubViewControllers:_controllersArr andParentViewController:self andSelectedViewColor:[UIColor whiteColor] andSelectedTextColor:[UIColor blackColor] andShowSeperateLine:NO andShowBottomLine:YES andCurrentPage:0];
+    OptionBarController *navTabBarController = [[OptionBarController alloc] initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 42) andSubViewControllers:_controllersArr andParentViewController:self andSelectedViewColor:[UIColor whiteColor] andSelectedTextColor:[UIColor blackColor] andShowSeperateLine:NO andShowBottomLine:YES andCurrentPage:0];
     navTabBarController.linecolor=LightYellowColor;
 }
 
