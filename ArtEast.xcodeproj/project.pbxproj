@@ -17,6 +17,8 @@
 		2099BFAD1E33726200E7CAA5 /* TrackOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099BFAC1E33726200E7CAA5 /* TrackOrderCell.m */; };
 		96A1DEE6207B57B50052E30F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A1DEE4207B57B50052E30F /* Reachability.m */; };
 		96A1DEEB207B95F00052E30F /* BaseNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A1DEEA207B95EF0052E30F /* BaseNavBar.m */; };
+		96CBBA35207CA72D008E0F66 /* GuideBookVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CBBA34207CA72D008E0F66 /* GuideBookVC.m */; };
+		96CBBA38207CA7DF008E0F66 /* PageAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CBBA37207CA7DF008E0F66 /* PageAnimationView.m */; };
 		FD078B541E08C9CF001B504A /* 启动页@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD078B531E08C9CF001B504A /* 启动页@2x.png */; };
 		FD0B2B1C1E56A9FA001D13CF /* LimitBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0B2B1B1E56A9FA001D13CF /* LimitBuyView.m */; };
 		FD0B2B1F1E56C462001D13CF /* DesignerSayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0B2B1E1E56C462001D13CF /* DesignerSayView.m */; };
@@ -367,6 +369,10 @@
 		96A1DEE5207B57B50052E30F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		96A1DEE9207B95EF0052E30F /* BaseNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavBar.h; sourceTree = "<group>"; };
 		96A1DEEA207B95EF0052E30F /* BaseNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavBar.m; sourceTree = "<group>"; };
+		96CBBA33207CA72D008E0F66 /* GuideBookVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuideBookVC.h; sourceTree = "<group>"; };
+		96CBBA34207CA72D008E0F66 /* GuideBookVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuideBookVC.m; sourceTree = "<group>"; };
+		96CBBA36207CA7DF008E0F66 /* PageAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageAnimationView.h; sourceTree = "<group>"; };
+		96CBBA37207CA7DF008E0F66 /* PageAnimationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageAnimationView.m; sourceTree = "<group>"; };
 		BDCC5F8466E9C905660EB834 /* Pods-ArtEast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtEast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArtEast/Pods-ArtEast.debug.xcconfig"; sourceTree = "<group>"; };
 		FD078B531E08C9CF001B504A /* 启动页@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "启动页@2x.png"; sourceTree = "<group>"; };
 		FD0B2B1A1E56A9FA001D13CF /* LimitBuyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitBuyView.h; sourceTree = "<group>"; };
@@ -1949,6 +1955,10 @@
 				FDD12E011E23681B0048E3E3 /* LauncherVC.m */,
 				FD6404071D9CF17400BA4940 /* GuideVC.h */,
 				FD6404081D9CF17400BA4940 /* GuideVC.m */,
+				96CBBA33207CA72D008E0F66 /* GuideBookVC.h */,
+				96CBBA34207CA72D008E0F66 /* GuideBookVC.m */,
+				96CBBA36207CA7DF008E0F66 /* PageAnimationView.h */,
+				96CBBA37207CA7DF008E0F66 /* PageAnimationView.m */,
 			);
 			path = "Guide(导航)";
 			sourceTree = "<group>";
@@ -2785,6 +2795,7 @@
 				FDEA71571DE5937300E84CA0 /* NetworkUtil.m in Sources */,
 				FD0DB1441E2E273100561643 /* NSString+Valid.m in Sources */,
 				FD0DB0FD1E2E273100561643 /* UserProfileManager.m in Sources */,
+				96CBBA38207CA7DF008E0F66 /* PageAnimationView.m in Sources */,
 				FD848F0D1E1CA43800792FD6 /* AEFilePath.m in Sources */,
 				FD848F2A1E1CA43800792FD6 /* AEToast.m in Sources */,
 				FDEA71591DE5937300E84CA0 /* LoginVC.m in Sources */,
@@ -2854,6 +2865,7 @@
 				FD0DB15F1E2E273100561643 /* EaseBubbleView+Video.m in Sources */,
 				FD848F161E1CA43800792FD6 /* ImageViewer.m in Sources */,
 				FDD12E021E23681B0048E3E3 /* LauncherVC.m in Sources */,
+				96CBBA35207CA72D008E0F66 /* GuideBookVC.m in Sources */,
 				FDEA716F1DE5937300E84CA0 /* AETypeInfo.m in Sources */,
 				FD0DB0FA1E2E273100561643 /* ConversationListController.m in Sources */,
 				FD848F2F1E1CA43800792FD6 /* AEUMengCenter.m in Sources */,

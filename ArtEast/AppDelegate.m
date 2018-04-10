@@ -12,6 +12,7 @@
 #import "AppDelegate+Push.h"
 #import "BaseNC.h"
 #import "GuideVC.h"
+#import "GuideBookVC.h"
 #import "GoodsClassifyVC.h"
 #import "LoveLifeVC.h"
 #import "FineGoodsVC.h"
@@ -97,8 +98,8 @@
         //判断是否首次进入应用
         if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstLG"])
         {
-            //将guideViewController作为根视图控制器
-            GuideVC *guideVC = [[GuideVC alloc] init];
+//            GuideVC *guideVC = [[GuideVC alloc] init];
+            GuideBookVC *guideVC = [[GuideBookVC alloc] init];
             self.window.rootViewController = guideVC;
             
             //使用block获取点击图片事件

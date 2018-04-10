@@ -414,22 +414,8 @@
     
     self.tabBarController.tabBar.hidden=NO;
     if (!tabbarImgView.image) {
-        tabbarImgView.image = [self snapshotSingleView:self.tabBarController.tabBar];
+        tabbarImgView.image = [Utils snapshotSingleView:self.tabBarController.tabBar];
     }
-}
-
-#pragma mark - 屏幕快照
-- (UIImage *)snapshotSingleView:(UIView *)view
-{
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, 0);
-    
-    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return image;
 }
 
 - (void)didReceiveMemoryWarning {
