@@ -71,7 +71,14 @@
     _searchBar.delegate = self;
     _searchBar.searchBarStyle = UISearchBarStyleMinimal;
     _searchBar.placeholder = @"有生活 才有家";
-    [self.navBar addSubview: _searchBar];
+    [self.navBar addSubview:_searchBar];
+    
+    //KVC
+    UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
+    if (searchField) {
+        //[searchField setValue:[UIColor blackColor] forKeyPath:@"_placeholderLabel.textColor"];
+        [searchField setValue:[UIFont systemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+    }
     
     [self getData];
 }
@@ -183,7 +190,7 @@
 //显示取消按钮
 - (void)showCancelBtn {
     _searchBar.showsCancelButton = YES;
-    _searchBar.frame = CGRectMake(16, 22, WIDTH-20, 40);
+    _searchBar.frame = CGRectMake(16, kStatusBarH+2, WIDTH-20, 40);
     //修改取消按钮样式
     for (UIView *view in [[_searchBar.subviews lastObject] subviews]) {
         if ([view isKindOfClass:[UIButton class]]) {

@@ -58,6 +58,13 @@ UICollectionViewDataSource,UISearchBarDelegate>
     searchBar.placeholder = @"有生活 才有家";
     [topView addSubview:searchBar];
     
+    //KVC
+    UITextField *searchField = [searchBar valueForKey:@"_searchField"];
+    if (searchField) {
+        //[searchField setValue:[UIColor blackColor] forKeyPath:@"_placeholderLabel.textColor"];
+        [searchField setValue:[UIFont systemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+    }
+    
     self.navigationItem.titleView = topView;
 
     _selectIndex = 0;

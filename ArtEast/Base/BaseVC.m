@@ -71,7 +71,7 @@
 #pragma mark - 自定义导航条
 - (void)setNavBar {
     
-    self.navBar = [[BaseNavBar alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64.0)];
+    self.navBar = [[BaseNavBar alloc] initWithFrame:CGRectMake(0, 0, WIDTH, kNavBarH)];
     self.navBar.translucent = NO;
     
     self.navItem = [[UINavigationItem alloc] init];

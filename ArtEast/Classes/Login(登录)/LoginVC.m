@@ -63,17 +63,16 @@
     self.scrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.scrollView];
     
-    
     //关闭按钮
-    UIButton *closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(WIDTH-36, 35, 16, 16)];
+    UIButton *closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(WIDTH-36, kStatusBarH+15, 16, 16)];
     [closeBtn setBackgroundImage:[UIImage imageNamed:@"Close"] forState:UIControlStateNormal];
     [self.view addSubview:closeBtn];
-    UIButton *clickCloseBtn = [[UIButton alloc] initWithFrame:CGRectMake(WIDTH-50, 25, 40, 40)];
+    UIButton *clickCloseBtn = [[UIButton alloc] initWithFrame:CGRectMake(WIDTH-50, kStatusBarH+5, 40, 40)];
     [clickCloseBtn addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:clickCloseBtn];
     
     //Logo
-    UIImageView *logoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/2-40, 80, 80, 80)];
+    UIImageView *logoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/2-40, kNavBarH+16, 80, 80)];
     [logoImgView setImage:[UIImage imageNamed:@"LoginLogo"]];
     [self.scrollView addSubview:logoImgView];
     

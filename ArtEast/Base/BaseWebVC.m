@@ -597,10 +597,17 @@
                 UISearchBar *searchBar = [[UISearchBar alloc] init];
                 searchBar.delegate = self;
                 searchBar.showsCancelButton = NO;
-                searchBar.frame = CGRectMake(50, 22, WIDTH-70, 40);
+                searchBar.frame = CGRectMake(50, kStatusBarH+2, WIDTH-70, 40);
                 searchBar.searchBarStyle = UISearchBarStyleMinimal;
                 searchBar.placeholder = @"有生活 才有家";
                 [self.navBar addSubview: searchBar];
+                
+                //KVC
+                UITextField *searchField = [searchBar valueForKey:@"_searchField"];
+                if (searchField) {
+                    //[searchField setValue:[UIColor blackColor] forKeyPath:@"_placeholderLabel.textColor"];
+                    [searchField setValue:[UIFont systemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+                }
             } else {
                 self.title = _webView.title;
                 UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share"] style:UIBarButtonItemStylePlain target:self action:@selector(shareAction)];

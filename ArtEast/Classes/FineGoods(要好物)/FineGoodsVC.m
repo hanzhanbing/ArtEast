@@ -162,11 +162,11 @@
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     self.navItem.rightBarButtonItem = rightBarButtonItem;
     
-    leftClickBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 14, 50, 50)];
+    leftClickBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, kNavBarH-50, 50, 50)];
     [leftClickBtn addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
     [[UIApplication sharedApplication].keyWindow addSubview:leftClickBtn];
     
-    rightClickBtn = [[UIButton alloc] initWithFrame:CGRectMake(WIDTH-55, 14, 50, 50)];
+    rightClickBtn = [[UIButton alloc] initWithFrame:CGRectMake(WIDTH-55, kNavBarH-50, 50, 50)];
     [rightClickBtn addTarget:self action:@selector(cartAction) forControlEvents:UIControlEventTouchUpInside];
     [[UIApplication sharedApplication].keyWindow addSubview:rightClickBtn];
 }
