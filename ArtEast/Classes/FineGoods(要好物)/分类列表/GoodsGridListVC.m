@@ -43,7 +43,7 @@
         UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
         //设置滚动方向
         [flowlayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0 , 0 , WIDTH, HEIGHT - 106 - kTabBarH) collectionViewLayout:flowlayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0 , 0 , WIDTH, HEIGHT - 42 - kNavBarH - kTabBarH) collectionViewLayout:flowlayout];
         _collectionView.alpha = 0;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;

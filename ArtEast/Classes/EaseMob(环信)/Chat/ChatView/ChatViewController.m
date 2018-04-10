@@ -59,7 +59,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callOutWithChatter" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callControllerClose" object:nil];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    // tableView 偏移20/64适配
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;//UIScrollView也适用
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
     [self setNavBar];
     
@@ -69,7 +74,7 @@
 #pragma mark - 自定义导航条
 - (void)setNavBar {
     
-    self.navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64.0)];
+    self.navBar = [[BaseNavBar alloc] initWithFrame:CGRectMake(0, 0, WIDTH, kNavBarH)];
     self.navBar.translucent = NO;
     
     self.navItem = [[UINavigationItem alloc] init];

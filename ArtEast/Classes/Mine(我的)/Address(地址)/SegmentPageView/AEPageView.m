@@ -31,18 +31,18 @@
 
 - (void)commonInit{
     
-    _scrollview = [[UIScrollView alloc] initWithFrame:self.bounds];
-    _scrollview.delegate = self;
-    _scrollview.pagingEnabled = YES;
-    _scrollview.showsHorizontalScrollIndicator = NO;
-    [self addSubview:_scrollview];
+    _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+    _scrollView.delegate = self;
+    _scrollView.pagingEnabled = YES;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    [self addSubview:_scrollView];
     
 }
 
 - (void)reloadData{
     if (nil != _datasource) {
         _numberOfItems = [_datasource numberOfItemInAEPageView:self];
-        _scrollview.contentSize = CGSizeMake(_numberOfItems * self.frame.size.width,self.frame.size.height);
+        _scrollView.contentSize = CGSizeMake(_numberOfItems * self.frame.size.width,self.frame.size.height);
     }
 }
 
@@ -51,7 +51,7 @@
     if ([self.itemsArray objectAtIndex:index] == [NSNull null]) {
         [self loadViewAtIndex:index];
     }
-    [_scrollview setContentOffset:CGPointMake(index * self.bounds.size.width, 0) animated:_scrollAnimation];
+    [_scrollView setContentOffset:CGPointMake(index * self.bounds.size.width, 0) animated:_scrollAnimation];
     [self preLoadViewWithIndex:index];
     _currentIndex = index;
 }
@@ -73,7 +73,7 @@
     if (_datasource != nil && [_datasource respondsToSelector:@selector(pageView:viewAtIndex:)]) {
         UIView *view = [_datasource pageView:self viewAtIndex:index];
         view.frame = CGRectMake(self.bounds.size.width*index, 0, self.bounds.size.width, self.bounds.size.height);
-        [_scrollview addSubview:view];
+        [_scrollView addSubview:view];
         [self.itemsArray replaceObjectAtIndex:index withObject:view];
     }
 }
@@ -93,11 +93,11 @@
     
     if (isRight==YES) { //向右滑
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"CityCountyCount"] isEqualToString:@"2"]) { //市区没选
-            [_scrollview setContentOffset:CGPointMake(_currentIndex * self.bounds.size.width, 0) animated:_scrollAnimation];
+            [_scrollView setContentOffset:CGPointMake(_currentIndex * self.bounds.size.width, 0) animated:_scrollAnimation];
         }
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"CityCountyCount"] isEqualToString:@"1"]) { //区没选
             if (_currentIndex!=0) {
-                [_scrollview setContentOffset:CGPointMake(_currentIndex * self.bounds.size.width, 0) animated:_scrollAnimation];
+                [_scrollView setContentOffset:CGPointMake(_currentIndex * self.bounds.size.width, 0) animated:_scrollAnimation];
             }
         }
     }

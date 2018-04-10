@@ -15,7 +15,6 @@
 
 @interface BindingMobileVC ()<UIScrollViewDelegate>
 
-@property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) UITextField *phoneTF;
 @property (nonatomic,strong) UITextField *codeTF;
 @property (nonatomic,strong) UITextField *pwdTF;
@@ -50,14 +49,14 @@
 
 - (void)initView {
 
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
-    _scrollView.delegate = self;
-    [self.view addSubview:_scrollView];
-    _scrollView.contentSize = CGSizeMake(WIDTH, _scrollView.height+1);
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+    self.scrollView.delegate = self;
+    [self.view addSubview:self.scrollView];
+    self.scrollView.contentSize = CGSizeMake(WIDTH, self.scrollView.height+1);
 
     UIImageView *logoImg = [[UIImageView alloc]initWithFrame:CGRectMake((WIDTH-80)/2.0, kNavBarH+20, 80, 80)];
     logoImg.image = [UIImage imageNamed:@"BindPhone"];
-    [_scrollView addSubview:logoImg];
+    [self.scrollView addSubview:logoImg];
 
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, logoImg.maxY+15, WIDTH-20, 40)];
     label.text = @"为了保护您的财产安全\n请及时绑定手机号";
@@ -65,12 +64,12 @@
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor lightGrayColor];
-    [_scrollView addSubview:label];
+    [self.scrollView addSubview:label];
 
     UIView *whiteBgView = [[UIView alloc] initWithFrame:CGRectMake(0, label.maxY+15, WIDTH, 200)];
     whiteBgView.backgroundColor = [UIColor whiteColor];
     whiteBgView.userInteractionEnabled = YES;
-    [_scrollView addSubview:whiteBgView];
+    [self.scrollView addSubview:whiteBgView];
     
     for (int i=0; i<_typeList.count; i++) {
         UIView *lineView;
@@ -141,13 +140,13 @@
     _chickBtn.selected = YES;
     _chickBtn.userInteractionEnabled = YES;
     [_chickBtn addTarget:self action:@selector(chickService:) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:_chickBtn];
+    [self.scrollView addSubview:_chickBtn];
     
     UILabel *lab=[[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_chickBtn.frame)+5, CGRectGetMaxY(whiteBgView.frame)+15, 72, 16)];
     lab.text=@"阅读并同意";
     lab.font=[UIFont systemFontOfSize:14];
     lab.textColor=PlaceHolderColor;
-    [_scrollView addSubview:lab];
+    [self.scrollView addSubview:lab];
     
     _userServiceBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     _userServiceBtn.frame=CGRectMake(CGRectGetMaxX(lab.frame), CGRectGetMaxY(whiteBgView.frame)+15, 100, 16);
@@ -157,7 +156,7 @@
     _userServiceBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     _userServiceBtn.userInteractionEnabled = YES;
     [_userServiceBtn addTarget:self action:@selector(userService) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:_userServiceBtn];
+    [self.scrollView addSubview:_userServiceBtn];
     
     _submitBtn =[UIButton buttonWithType:UIButtonTypeCustom];
     _submitBtn.frame=CGRectMake(20, CGRectGetMaxY(whiteBgView.frame)+80, WIDTH-40, 45);
@@ -168,7 +167,7 @@
     _submitBtn.layer.cornerRadius=5;
     _submitBtn.layer.masksToBounds=YES;
     [_submitBtn addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:_submitBtn];
+    [self.scrollView addSubview:_submitBtn];
     
 }
 

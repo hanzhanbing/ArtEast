@@ -55,7 +55,6 @@
 @interface GoodsCommentVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate,
 UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,TZImagePickerControllerDelegate,StarRatingViewDelegate>
 {
-    UIScrollView *_scrollView;
     UIImageView *_goodsImgV;
     UILabel *_goodsTileLabel;
     UILabel *_goodsAttributeLabel;
@@ -92,17 +91,16 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
 
 - (void)initViews{
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-BottomHeight-kNavBarH)];
-    _scrollView.backgroundColor = [UIColor redColor];
-    _scrollView.delegate = self;
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [self.view addSubview:_scrollView];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-BottomHeight-kNavBarH)];
+    self.scrollView.backgroundColor = [UIColor redColor];
+    self.scrollView.delegate = self;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [self.view addSubview:self.scrollView];
     
     UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 80)];
     view1.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:view1];
+    [self.scrollView addSubview:view1];
     
     _goodsImgV = [[UIImageView alloc]initWithFrame:CGRectMake(15, (view1.height-60)/2.0, 60, 60)];
     _goodsImgV.contentMode = UIViewContentModeScaleAspectFill;
@@ -138,12 +136,12 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = view1.frame;
     [btn addTarget:self action:@selector(showGoodsDetaile) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:btn];
+    [self.scrollView addSubview:btn];
     
     //商品质量星星 评价
     UIView *startView1 = [[UIView alloc]initWithFrame:CGRectMake(0, view1.maxY, WIDTH, 50)];
     startView1.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:startView1];
+    [self.scrollView addSubview:startView1];
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(_goodsImgV.x, 0, 75, startView1.height)];
     label1.text = @"商品质量：";
     label1.textColor = kColorFromRGBHex(0x444444);
@@ -160,7 +158,7 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
     //物流服务 星星评价
     UIView *startView2 = [[UIView alloc]initWithFrame:CGRectMake(0, startView1.maxY+10, WIDTH, startView1.height)];
     startView2.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:startView2];
+    [self.scrollView addSubview:startView2];
     
     UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(label1.x, 0, label1.width, startView1.height)];
     label2.text = @"物流服务：";
@@ -177,7 +175,7 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
     //评价内容展示
     UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, startView2.maxY+10, WIDTH, 80)];
     contentView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:contentView];
+    [self.scrollView addSubview:contentView];
     
     contentTV = [[UITextView alloc]initWithFrame:CGRectMake(_goodsImgV.x-4, 10, WIDTH-_goodsImgV.x*2, contentView.height-10)];
     contentTV.font = [UIFont systemFontOfSize:14];
@@ -193,7 +191,7 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
     //评价图片展示
     UIView *pictureView = [[UIView alloc]initWithFrame:CGRectMake(0, contentView.maxY, WIDTH, ImageWidth+10*2)];
     pictureView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:pictureView];
+    [self.scrollView addSubview:pictureView];
     
     
     //添加图片的按钮
@@ -217,7 +215,7 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
     [pictureView addSubview:collection];
     
     
-    _scrollView.contentSize = CGSizeMake(WIDTH, MAX(_scrollView.height+1, pictureView.maxY+20));
+    self.scrollView.contentSize = CGSizeMake(WIDTH, MAX(self.scrollView.height+1, pictureView.maxY+20));
     
     
     UIButton *submitBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, HEIGHT-BottomHeight, WIDTH, BottomHeight)];

@@ -21,7 +21,6 @@
     UITextField *pswTF;
     NSMutableArray *thirdLoginArr;
     
-    UIScrollView *_scrollView;
     UIView *_thirdView;
 }
 @end
@@ -33,7 +32,7 @@
     
     self.title = @"登录";
     
-    _scrollView.backgroundColor = [UIColor whiteColor];
+    self.scrollView.backgroundColor = [UIColor whiteColor];
     
     [self getData];
     
@@ -59,10 +58,10 @@
 
 - (void)initView {
     
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
-    _scrollView.delegate = self;
-    _scrollView.showsVerticalScrollIndicator = NO;
-    [self.view addSubview:_scrollView];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+    self.scrollView.delegate = self;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    [self.view addSubview:self.scrollView];
     
     
     //关闭按钮
@@ -76,7 +75,7 @@
     //Logo
     UIImageView *logoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH/2-40, 80, 80, 80)];
     [logoImgView setImage:[UIImage imageNamed:@"LoginLogo"]];
-    [_scrollView addSubview:logoImgView];
+    [self.scrollView addSubview:logoImgView];
     
     //账号
     accountTF = [[UITextField alloc] initWithFrame:CGRectMake(15, logoImgView.maxY+40, WIDTH-30, 20)];
@@ -86,12 +85,12 @@
     [accountTF setValue:PlaceHolderColor forKeyPath:@"_placeholderLabel.textColor"];
     accountTF.text = @"";
     accountTF.keyboardType = UIKeyboardTypePhonePad;
-    [_scrollView addSubview:accountTF];
+    [self.scrollView addSubview:accountTF];
     
     //分割线1
     UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(15, accountTF.maxY+15, WIDTH-30, 0.5)];
     line1.backgroundColor = LineColor;
-    [_scrollView addSubview:line1];
+    [self.scrollView addSubview:line1];
     
     pswTF = [[UITextField alloc] initWithFrame:CGRectMake(15, line1.maxY+15, WIDTH-80, 20)];
     pswTF.delegate = self;
@@ -100,12 +99,12 @@
     [pswTF setValue:PlaceHolderColor forKeyPath:@"_placeholderLabel.textColor"];
     pswTF.text = @"";
     pswTF.secureTextEntry = YES;
-    [_scrollView addSubview:pswTF];
+    [self.scrollView addSubview:pswTF];
     
     //分割线2
     UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(15, pswTF.maxY+15, WIDTH-30, 0.5)];
     line2.backgroundColor = LineColor;
-    [_scrollView addSubview:line2];
+    [self.scrollView addSubview:line2];
     
     //登录
     UIButton *loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, line2.maxY+40, WIDTH-30, 45)];
@@ -116,7 +115,7 @@
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     [loginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:loginBtn];
+    [self.scrollView addSubview:loginBtn];
     
     //快速注册
     UIButton *registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, loginBtn.maxY+20, 100, 20)];
@@ -126,7 +125,7 @@
     [registerBtn setTitle:@"注册用户" forState:UIControlStateNormal];
     [registerBtn setTitleColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6] forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:registerBtn];
+    [self.scrollView addSubview:registerBtn];
     
     //找回密码
     UIButton *findPswBtn = [[UIButton alloc] initWithFrame:CGRectMake(WIDTH-120, loginBtn.maxY+20, 100, 20)];
@@ -136,11 +135,11 @@
     [findPswBtn setTitle:@"忘记密码？" forState:UIControlStateNormal];
     [findPswBtn setTitleColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6] forState:UIControlStateNormal];
     [findPswBtn addTarget:self action:@selector(findPswAction) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:findPswBtn];
+    [self.scrollView addSubview:findPswBtn];
     
     
     _thirdView = [[UIView alloc] initWithFrame:CGRectMake(0, findPswBtn.maxY, WIDTH, 115)];
-    [_scrollView addSubview:_thirdView];
+    [self.scrollView addSubview:_thirdView];
     
     //第三方登录
     UIView *leftLine = [[UIView alloc] initWithFrame:CGRectMake(WIDTH/2-85, 55, 20, 0.5)];
@@ -188,7 +187,7 @@
             }
         }
     }
-    _scrollView.contentSize = CGSizeMake(WIDTH, MAX(_scrollView.height+1, _thirdView.maxY));
+    self.scrollView.contentSize = CGSizeMake(WIDTH, MAX(self.scrollView.height+1, _thirdView.maxY));
 }
 
 #pragma mark - init data
@@ -327,7 +326,7 @@
 //登录
 - (void)loginAction {
     
-    [_scrollView endEditing:YES];
+    [self.scrollView endEditing:YES];
     
     if (accountTF.text.length!=11) {
         [Utils showToast:@"请输入正确的手机号"];

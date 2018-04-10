@@ -17,7 +17,7 @@
 
 @interface ChatViewController : EaseMessageViewController <EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
 
-@property (nonatomic,retain) UINavigationBar *navBar;
+@property (nonatomic,retain) BaseNavBar *navBar;
 @property (nonatomic,retain) UINavigationItem *navItem;
 
 @property (nonatomic,assign) BOOL isPresent;

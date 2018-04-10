@@ -161,6 +161,15 @@
     return 10;
 }
 
+//iOS11 tableView 如果是Gruop类型的话，section之间的间距变宽，执行返回高度的同时还需要执行return UIView的代理
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [[UIView alloc] init];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc] init];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (![Utils isBlankString:self.from]) {
         CouponModel *couponModel = _dataArr[indexPath.section];

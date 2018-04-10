@@ -53,7 +53,7 @@
     
     [self initNav];
     
-//    [self blankView];
+    [self blankView];
     
     controllersArr = [NSMutableArray array];
     categoryArr = [NSMutableArray array];

@@ -639,10 +639,10 @@
 
 - (UIView *)headerView {
     if (!_headerView) {
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, kNavBarH)];
         
-        //底部背景
-        _navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 64)];
+        //导航条
+        _navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, kNavBarH)];
         _navigationView.backgroundColor = [UIColor whiteColor];
         _navigationView.layer.borderColor = LineColor.CGColor;
         _navigationView.layer.borderWidth = 0.3;
@@ -650,7 +650,7 @@
         [_headerView addSubview:_navigationView];
         
         //标题
-        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, WIDTH, 44)];
+        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, kStatusBarH, WIDTH, 44)];
         _titleLab.text = @"商品详情";
         _titleLab.alpha = 0;
         _titleLab.textColor = [UIColor blackColor];
@@ -661,17 +661,17 @@
         //返回按钮
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backBtn setImage:[UIImage imageNamed:@"BackAlpha"] forState:UIControlStateNormal];
-        _backBtn.frame = CGRectMake(16, 27, 30, 30);
+        _backBtn.frame = CGRectMake(16, kStatusBarH+7, 30, 30);
         _backBtn.userInteractionEnabled = NO;
         [_headerView addSubview:_backBtn];
-        UIButton *back = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 50, 50)];
+        UIButton *back = [[UIButton alloc] initWithFrame:CGRectMake(0, kStatusBarH, 44, 44)];
         [back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
         [_headerView addSubview:back];
         
         //分享按钮
         _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_shareBtn setImage:[UIImage imageNamed:@"ShareAlpha"] forState:UIControlStateNormal];
-        _shareBtn.frame = CGRectMake(WIDTH-46, 27, 30, 30);
+        _shareBtn.frame = CGRectMake(WIDTH-46, kStatusBarH+7, 30, 30);
         [_shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
         _shareBtn.userInteractionEnabled = NO;
         [_headerView addSubview:_shareBtn];
@@ -706,7 +706,7 @@
     [_bgView addSubview:_allContentView];
     
     //上UITableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-49) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-kTabBarH) style:UITableViewStyleGrouped];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.delegate = self;
@@ -763,7 +763,7 @@
 
 //下架视图
 - (void)initXiajiaView {
-    _xiajiaView = [[UILabel alloc] initWithFrame:CGRectMake(0, HEIGHT-49-44, WIDTH, 44)];
+    _xiajiaView = [[UILabel alloc] initWithFrame:CGRectMake(0, HEIGHT-kTabBarH-44, WIDTH, 44)];
     _xiajiaView.hidden = YES;
     _xiajiaView.backgroundColor = kColorFromRGBHex(0xfdfae7);
     _xiajiaView.text = @"该商品已下柜，非常抱歉！";
@@ -821,15 +821,20 @@
 //底部视图
 - (void)initFooterView {
 
-    _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, HEIGHT-BOTTOM_VIEW_HEIGHT, WIDTH, BOTTOM_VIEW_HEIGHT)];
+    _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, HEIGHT-kTabBarH, WIDTH, kTabBarH)];
     _footerView.alpha = 0;
     _footerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_footerView];
     
-    UIView *rowLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 0.5)];
+    UIView *rowLine = [[UIView alloc] initWithFrame:CGRectMake(0, -1, WIDTH, 0.5)];
     rowLine.backgroundColor = LineColor;
-    rowLine.alpha = 0.6;
+    rowLine.alpha = 0.5;
     [_footerView addSubview:rowLine];
+    
+    UIView *rowLine1 = [[UIView alloc] initWithFrame:CGRectMake(0, BOTTOM_VIEW_HEIGHT-0.5, WIDTH, 0.5)];
+    rowLine1.backgroundColor = LineColor;
+    rowLine1.alpha = 0.6;
+    [_footerView addSubview:rowLine1];
     
     //聊天
     _chatBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, WIDTH/6, BOTTOM_VIEW_HEIGHT)];

@@ -123,7 +123,6 @@
 
 @interface OrderDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 {
-    UIScrollView *_scrollView;
     UILabel *_addressNameLb; //姓名
     UILabel *_addressPhoneLb; //手机号
     UILabel *_addressDetailLb; //收货地址
@@ -172,20 +171,20 @@
 }
 
 - (void)initView {
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:_scrollView];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.scrollView];
     
     UIImageView *topImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 3)];
     topImageView.image = [UIImage imageNamed:@"AddressIcon"];
-    [_scrollView addSubview:topImageView];
+    [self.scrollView addSubview:topImageView];
     
     //收货地址视图 （收货人信息 收货地址信息）
     UIButton *topView = [[UIButton alloc]initWithFrame:CGRectMake(0, topImageView.maxY, WIDTH, 90)];
     topView.backgroundColor = [UIColor whiteColor];
     [topView addTarget:self action:@selector(AddressManager) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:topView];
+    [self.scrollView addSubview:topView];
     
     UIImageView *dingweiImg = [[UIImageView alloc]initWithFrame:CGRectMake(15, 5, 30, topView.height-5)];
     dingweiImg.image = [UIImage imageNamed:@"AddressFlag"];
@@ -219,7 +218,7 @@
     //订单信息 视图 （订单编号、商品图片、订单总价）
     UIView *orderView = [[UIView alloc]initWithFrame:CGRectMake(0, topView.maxY+10, WIDTH, 140)];
     orderView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:orderView];
+    [self.scrollView addSubview:orderView];
     
     _orderNumLb = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, WIDTH-30-70, 40)];
     _orderNumLb.minimumScaleFactor = 0.8;
@@ -249,7 +248,7 @@
     //商品合计 所在视图（商品合计、优惠券、运费、合计）
     otherView = [[UIView alloc]initWithFrame:CGRectMake(0, orderView.maxY+10, WIDTH, 44*5)];
     otherView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:otherView];
+    [self.scrollView addSubview:otherView];
     
     UILabel *goodsLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 70, 44)];
     goodsLabel.text = @"商品合计";
@@ -326,7 +325,7 @@
     //支付方式  所在视图
     payView = [[UIView alloc]initWithFrame:CGRectMake(0, otherView.maxY+10, WIDTH, 50)];
     payView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:payView];
+    [self.scrollView addSubview:payView];
     
     UILabel *payLb = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 70, payView.height)];
     payLb.text = @"支付方式";
@@ -343,7 +342,7 @@
     //发票信息  所在视图
     invoiceView= [[UIView alloc]initWithFrame:CGRectMake(0, payView.maxY+10, WIDTH, 50)];
     invoiceView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:invoiceView];
+    [self.scrollView addSubview:invoiceView];
     
     UILabel *fapiaoLb = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 70, invoiceView.height)];
     fapiaoLb.text = @"发票";
@@ -360,7 +359,7 @@
     //下单时间  所在视图
     timeView= [[UIView alloc]initWithFrame:CGRectMake(0, invoiceView.maxY+10, WIDTH, 50)];
     timeView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:timeView];
+    [self.scrollView addSubview:timeView];
     
     UILabel *timeLb = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 70, invoiceView.height)];
     timeLb.text = @"下单时间";
@@ -421,7 +420,7 @@
     }
     timeView.y = invoiceView.maxY+10;
     
-    _scrollView.contentSize = CGSizeMake(WIDTH, MAX(_scrollView.height+1, timeView.maxY+10+bottomView.height));
+    self.scrollView.contentSize = CGSizeMake(WIDTH, MAX(self.scrollView.height+1, timeView.maxY+10+bottomView.height));
     
     _orderNumLb.text = [NSString stringWithFormat:@"订单编号：%@",self.order.ID];
     switch (self.order.type) {
@@ -520,7 +519,7 @@
                 }
                 timeView.y = invoiceView.maxY+10;
                 
-                _scrollView.contentSize = CGSizeMake(WIDTH, MAX(_scrollView.height+1, timeView.maxY+10+bottomView.height));
+                self.scrollView.contentSize = CGSizeMake(WIDTH, MAX(self.scrollView.height+1, timeView.maxY+10+bottomView.height));
                 [self.tableView reloadData];
             }
             

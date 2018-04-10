@@ -166,12 +166,12 @@
      请使用UIScrollView作为NewPagedFlowView的容器View,才会显示正常,如下
      *****************************/
     
-    UIScrollView *bottomScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    [bottomScrollView addSubview:_pageFlowView];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    [self.scrollView addSubview:_pageFlowView];
     
     [_pageFlowView reloadData];
     
-    [self.view addSubview:bottomScrollView];
+    [self.view addSubview:self.scrollView];
 }
 
 //导航条

@@ -25,7 +25,7 @@
 
 @interface AEPageView : UIView
 
-@property(nonatomic,strong) UIScrollView *scrollview;
+@property(nonatomic,strong) UIScrollView *scrollView;
 @property(nonatomic,assign) NSInteger numberOfItems;
 @property(nonatomic,assign) BOOL scrollAnimation;
 @property(nonatomic,weak) id<AEPageViewDataSource> datasource;

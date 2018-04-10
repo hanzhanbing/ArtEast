@@ -51,8 +51,6 @@
 UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,TZImagePickerControllerDelegate>
 
 {
-    UIScrollView *_scrollView;
-
     UITextField *returnResonTF;
     UITextField *returnMoneyTF;
 
@@ -83,20 +81,19 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
 }
 
 - (void)initViews{
-
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-BottomHeight-kNavBarH)];
-    _scrollView.backgroundColor = [UIColor redColor];
-    _scrollView.delegate = self;
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [self.view addSubview:_scrollView];
+    
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, HEIGHT-BottomHeight-kNavBarH)];
+    self.scrollView.backgroundColor = [UIColor redColor];
+    self.scrollView.delegate = self;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [self.view addSubview:self.scrollView];
 
 
     //商品质量星星 评价
     UIView *startView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 10, WIDTH, 50)];
     startView1.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:startView1];
+    [self.scrollView addSubview:startView1];
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 70, startView1.height)];
     label1.text = @"退货理由：";
     label1.textColor = LightBlackColor;
@@ -114,7 +111,7 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
     //物流服务 星星评价
     UIView *startView2 = [[UIView alloc]initWithFrame:CGRectMake(0, startView1.maxY+10, WIDTH, startView1.height)];
     startView2.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:startView2];
+    [self.scrollView addSubview:startView2];
 
     UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(label1.x, 0, label1.width, startView1.height)];
     label2.text = @"退款金额：";
@@ -134,7 +131,7 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
     //评价内容展示
     UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, startView2.maxY+10, WIDTH, 100)];
     contentView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:contentView];
+    [self.scrollView addSubview:contentView];
 
     contentTV = [[UITextView alloc]initWithFrame:CGRectMake(15, 0, WIDTH-15*2, contentView.height)];
     contentTV.textColor = LightBlackColor;
@@ -152,7 +149,7 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
     //评价图片展示
     UIView *pictureView = [[UIView alloc]initWithFrame:CGRectMake(0, contentView.maxY, WIDTH, ImageWidth+10*2)];
     pictureView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:pictureView];
+    [self.scrollView addSubview:pictureView];
 
 
     //添加图片的按钮
@@ -176,7 +173,7 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDele
     [pictureView addSubview:collection];
 
 
-    _scrollView.contentSize = CGSizeMake(WIDTH, MAX(_scrollView.height+1, pictureView.maxY+20));
+    self.scrollView.contentSize = CGSizeMake(WIDTH, MAX(self.scrollView.height+1, pictureView.maxY+20));
 
 
     UIButton *submitBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, HEIGHT-BottomHeight, WIDTH, BottomHeight)];

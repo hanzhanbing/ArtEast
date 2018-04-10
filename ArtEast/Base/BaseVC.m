@@ -35,8 +35,6 @@
     
     self.view.backgroundColor = PageColor;
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
     self.tableFrame = CGRectMake(0, kNavBarH, WIDTH, HEIGHT-kNavBarH);
     
     [self setNavBar];
@@ -99,12 +97,22 @@
 - (void)backAction {
     timeout = -1;
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 //获取数据
 - (void)getData{
     
+}
+
+#pragma mark - UITableViewDelegate
+
+//iOS11 tableView 如果是Gruop类型的话，section之间的间距变宽，执行返回高度的同时还需要执行return UIView的代理
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [[UIView alloc] init];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc] init];
 }
 
 #pragma mark - EMClientDelegate
@@ -226,6 +234,18 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    // UIScrollView、UITableView偏移20/64适配
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
+    self.tableView.estimatedRowHeight = 0;
+    self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.estimatedSectionFooterHeight = 0;
     
     //隐藏系统导航条
     [self.navigationController setNavigationBarHidden:YES];

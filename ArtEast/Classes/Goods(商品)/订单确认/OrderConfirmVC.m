@@ -100,7 +100,6 @@
 
 @interface OrderConfirmVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
-    UIScrollView *_scrollView;
     UIImageView *_dingweiImg; //定位图标
     UILabel *_defaultLab; //定位默认标志
     UILabel *_addressNameLb; //姓名
@@ -380,7 +379,7 @@
             remarkView.y = invoiceView.maxY+10;
             otherView.y = remarkView.maxY+10;
             
-            _scrollView.contentSize = CGSizeMake(WIDTH, MAX(_scrollView.height+1, otherView.maxY+10+bottomView.height));
+            self.scrollView.contentSize = CGSizeMake(WIDTH, MAX(self.scrollView.height+1, otherView.maxY+10+bottomView.height));
             [self.tableView reloadData];
         }
     }];
@@ -513,16 +512,16 @@
     
     CGFloat offH = 10;
     
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:_scrollView];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.scrollView];
     
     //地址  所在视图
     addressView = [[UIButton alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, 103)];
     addressView.backgroundColor = [UIColor whiteColor];
     [addressView addTarget:self action:@selector(addressManager) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:addressView];
+    [self.scrollView addSubview:addressView];
     
     //彩条
     UIImageView *topImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 3)];
@@ -568,12 +567,12 @@
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [_scrollView addSubview:self.tableView];
+    [self.scrollView addSubview:self.tableView];
     
     //优惠券  所在视图
     couponView = [[UIView alloc]initWithFrame:CGRectMake(0, self.tableView.maxY+offH, WIDTH, 50)];
     couponView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:couponView];
+    [self.scrollView addSubview:couponView];
     
     UITapGestureRecognizer *couponTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectCoupon)];
     [couponView addGestureRecognizer:couponTap];
@@ -604,7 +603,7 @@
     //发票信息  所在视图
     invoiceView= [[UIView alloc]initWithFrame:CGRectMake(0, couponView.maxY+offH, WIDTH, 50)];
     invoiceView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:invoiceView];
+    [self.scrollView addSubview:invoiceView];
     
     UITapGestureRecognizer *invoiceTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectBill)];
     [invoiceView addGestureRecognizer:invoiceTap];
@@ -635,7 +634,7 @@
     //备注  所在视图
     remarkView= [[UIView alloc]initWithFrame:CGRectMake(0, invoiceView.maxY+offH, WIDTH, 50)];
     remarkView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:remarkView];
+    [self.scrollView addSubview:remarkView];
     
     UILabel *remarkLb = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 50, invoiceView.height)];
     remarkLb.text = @"备注：";
@@ -653,7 +652,7 @@
     //商品合计 所在视图（商品合计、优惠券、运费、合计）
     otherView = [[UIView alloc]initWithFrame:CGRectMake(0, remarkView.maxY+offH, WIDTH, 50*5)];
     otherView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:otherView];
+    [self.scrollView addSubview:otherView];
     
 //    for (int i=0; i<4; i++) {
 //        UILabel *lineLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 49.5*(i+1), WIDTH-15, 0.3)];
@@ -750,7 +749,7 @@
     [confirmBtn addTarget:self action:@selector(orderCreate) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:confirmBtn];
     
-    _scrollView.contentSize = CGSizeMake(WIDTH, MAX(_scrollView.height+1, invoiceView.maxY+10+bottomView.height));
+    self.scrollView.contentSize = CGSizeMake(WIDTH, MAX(self.scrollView.height+1, invoiceView.maxY+10+bottomView.height));
 }
 
 #pragma mark - 发票视图

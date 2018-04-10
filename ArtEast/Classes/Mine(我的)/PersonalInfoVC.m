@@ -13,7 +13,6 @@
 
 @interface PersonalInfoVC ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIScrollViewDelegate>
 {
-    UIScrollView *_scrollView;
     UIImageView *_headImgView;
     UIButton *_womanBtn;
     UIButton *_manBtn;
@@ -54,10 +53,10 @@
     [navRightBtn addTarget:self action:@selector(SaveMyInfoData) forControlEvents:UIControlEventTouchUpInside];
     self.navItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:navRightBtn];
 
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
-    _scrollView.delegate = self;
-    [self.view addSubview:_scrollView];
-    _scrollView.contentSize = CGSizeMake(WIDTH, _scrollView.height+1);
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+    self.scrollView.delegate = self;
+    [self.view addSubview:self.scrollView];
+    self.scrollView.contentSize = CGSizeMake(WIDTH, self.scrollView.height+1);
 
     _headImgView = [[UIImageView alloc]initWithFrame:CGRectMake((WIDTH-_headHeight)/2, 80, _headHeight, _headHeight)];
     [_headImgView sd_setImageWithURL:[NSURL URLWithString:[UserInfo share].avatar] placeholderImage:[UIImage imageNamed:@"MineHeadIcon"]];
@@ -75,14 +74,14 @@
 
     UIView *whiteView = [[UIView alloc]initWithFrame:CGRectMake(0, kNavBarH, WIDTH, label.maxY+25-kNavBarH)];
     whiteView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:whiteView];
-    [_scrollView addSubview:_headImgView];
-    [_scrollView addSubview:label];
-    [_scrollView addSubview:headImageBtn];
+    [self.scrollView addSubview:whiteView];
+    [self.scrollView addSubview:_headImgView];
+    [self.scrollView addSubview:label];
+    [self.scrollView addSubview:headImageBtn];
 
     UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, whiteView.maxY+10, WIDTH, 250)];
     bottomView.backgroundColor = [UIColor whiteColor];
-    [_scrollView addSubview:bottomView];
+    [self.scrollView addSubview:bottomView];
 
     CGFloat tempHeight = 50;
 
