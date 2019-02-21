@@ -125,15 +125,23 @@
     _minuteLab.text = str_minute;
     _secondLab.text = str_second;
     
-    _priceLab.text = [NSString stringWithFormat:@"￥%@",_limitDic[@"goods"][@"price"]];
-    _mktPriceLab.text = [NSString stringWithFormat:@"￥%@",_limitDic[@"goods"][@"mktprice"]];
+    NSString *price = @"￥0";
+    NSString *mktprice = @"￥0";
+    NSString *picture = @"";
+    if ([_limitDic[@"goods"] isKindOfClass:[NSDictionary class]]) {
+        price = [NSString stringWithFormat:@"￥%@",_limitDic[@"goods"][@"price"]];
+        mktprice = [NSString stringWithFormat:@"￥%@",_limitDic[@"goods"][@"mktprice"]];
+        picture = _limitDic[@"goods"][@"picture"];
+    }
+    _priceLab.text = price;
+    _mktPriceLab.text = mktprice;
     
     _priceLab.frame = CGRectMake(17, self.height-32, [Utils getTextWidth:_priceLab.text fontSize:14 forHeight:15], 15);
     _mktPriceLab.frame = CGRectMake(_priceLab.maxX+8, self.height-32, 100, 15);
     _deleteView.frame = CGRectMake(_priceLab.maxX+6, 0, [Utils getTextWidth:_mktPriceLab.text fontSize:12 forHeight:15]+5, 0.5);
     _deleteView.centerY = _mktPriceLab.centerY;
     
-    [_imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",PictureUrl,_limitDic[@"goods"][@"picture"]]] placeholderImage:[UIImage imageNamed:@"GoodsDefault"]];
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",PictureUrl,picture]] placeholderImage:[UIImage imageNamed:@"GoodsDefault"]];
 }
 
 //跳转到限时购

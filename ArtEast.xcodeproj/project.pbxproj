@@ -174,8 +174,6 @@
 		FD56B7991E1E1E26007907BD /* AEEmitterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FD56B7981E1E1E26007907BD /* AEEmitterButton.m */; };
 		FD56B79B1E1E1E65007907BD /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = FD56B79A1E1E1E65007907BD /* Sparkle.png */; };
 		FD5DBABB1E12649200C3503F /* ShopCarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5DBABA1E12649200C3503F /* ShopCarModel.m */; };
-		FD6938F41E2DCBFF001993B9 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6938F31E2DCBFF001993B9 /* libstdc++.6.0.9.tbd */; };
-		FD6938F61E2DCC15001993B9 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6938F51E2DCC15001993B9 /* libstdc++.6.tbd */; };
 		FD6938F81E2DCC2E001993B9 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6938F71E2DCC2E001993B9 /* libxml2.tbd */; };
 		FD6938FA1E2DCC49001993B9 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6938F91E2DCC49001993B9 /* libiconv.tbd */; };
 		FD6938FC1E2DCC7D001993B9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6938FB1E2DCC7D001993B9 /* MobileCoreServices.framework */; };
@@ -1011,8 +1009,6 @@
 				FD0DB1131E2E273100561643 /* libopencore-amrnb.a in Frameworks */,
 				FD6938FA1E2DCC49001993B9 /* libiconv.tbd in Frameworks */,
 				FD6938F81E2DCC2E001993B9 /* libxml2.tbd in Frameworks */,
-				FD6938F61E2DCC15001993B9 /* libstdc++.6.tbd in Frameworks */,
-				FD6938F41E2DCBFF001993B9 /* libstdc++.6.0.9.tbd in Frameworks */,
 				FD848F481E1CE99900792FD6 /* CoreMotion.framework in Frameworks */,
 				FD848F461E1CE98C00792FD6 /* CFNetwork.framework in Frameworks */,
 				FD848F451E1CE98400792FD6 /* Foundation.framework in Frameworks */,
