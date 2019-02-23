@@ -19,6 +19,7 @@
 		96A1DEEB207B95F00052E30F /* BaseNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A1DEEA207B95EF0052E30F /* BaseNavBar.m */; };
 		96CBBA35207CA72D008E0F66 /* GuideBookVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CBBA34207CA72D008E0F66 /* GuideBookVC.m */; };
 		96CBBA38207CA7DF008E0F66 /* PageAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CBBA37207CA7DF008E0F66 /* PageAnimationView.m */; };
+		A01E1E4D22216F5F00435A0E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01E1E4C22216F5F00435A0E /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FD078B541E08C9CF001B504A /* 启动页@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD078B531E08C9CF001B504A /* 启动页@2x.png */; };
 		FD0B2B1C1E56A9FA001D13CF /* LimitBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0B2B1B1E56A9FA001D13CF /* LimitBuyView.m */; };
 		FD0B2B1F1E56C462001D13CF /* DesignerSayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0B2B1E1E56C462001D13CF /* DesignerSayView.m */; };
@@ -371,6 +372,7 @@
 		96CBBA34207CA72D008E0F66 /* GuideBookVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuideBookVC.m; sourceTree = "<group>"; };
 		96CBBA36207CA7DF008E0F66 /* PageAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageAnimationView.h; sourceTree = "<group>"; };
 		96CBBA37207CA7DF008E0F66 /* PageAnimationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageAnimationView.m; sourceTree = "<group>"; };
+		A01E1E4C22216F5F00435A0E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		BDCC5F8466E9C905660EB834 /* Pods-ArtEast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtEast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArtEast/Pods-ArtEast.debug.xcconfig"; sourceTree = "<group>"; };
 		FD078B531E08C9CF001B504A /* 启动页@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "启动页@2x.png"; sourceTree = "<group>"; };
 		FD0B2B1A1E56A9FA001D13CF /* LimitBuyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitBuyView.h; sourceTree = "<group>"; };
@@ -993,6 +995,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A01E1E4D22216F5F00435A0E /* UserNotifications.framework in Frameworks */,
 				201799691E695678004341D3 /* libc++abi.tbd in Frameworks */,
 				FDEA71A61DE5937300E84CA0 /* libz.tbd in Frameworks */,
 				FDEA71A51DE5937300E84CA0 /* ImageIO.framework in Frameworks */,
@@ -1050,6 +1053,7 @@
 		BA5E8105ED7BC279D857C434 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A01E1E4C22216F5F00435A0E /* UserNotifications.framework */,
 				201799681E695678004341D3 /* libc++abi.tbd */,
 				FDD39C3D1E2DFE5A004D0E4E /* AudioToolbox.framework */,
 				FDD39C3B1E2DFE52004D0E4E /* CoreMedia.framework */,
